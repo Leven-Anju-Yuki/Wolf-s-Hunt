@@ -9,7 +9,7 @@
         <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png" class="icone" />
     </head>
     <body>
-        <div >
+        <div>
             <div class="row">
                 <div class="col-12">
                     <!-- Modal pour les règles du jeu -->
@@ -185,18 +185,48 @@
                 </div>
             </div>
             <div id="statusBars" class="ttbar">
-                <div id="health-bar">
-                    Santé : <span id="health">100</span>
-                </div>
-                <div id="food-bar">
-                    Nourriture : <span id="food">100</span>
-                </div>
+                <div id="health-bar">Santé : <span id="health">100</span></div>
+                <div id="food-bar">Nourriture : <span id="food">100</span></div>
+                <div id="poison-bar">Malade : <span id="poison">0</span></div>
             </div>
         </div>
         <!-- Zone de jeu -->
         <div id="game-screen">
             <!-- Image du loup pour le déplacement -->
             <img id="wolf" src="./assets/img/loup.webp" alt="Loup" />
+        </div>
+        <!-- Modal pour afficher la mort du loup -->
+        <div
+            class="modal fade"
+            id="deathModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="deathModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="deathModalLabel">
+                            Vous etes mort.<br />Voulez-vous recommencer ?
+                        </h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: none !important">
+                        <center><img src="./assets/img/tete-mort.png" alt="" /></center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Fermer
+                        </button>
+                        <button type="button" class="btn btn-primary" id="restartGameBtn">
+                            Recommencer
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Scripts -->
         <script src="./assets/js/jquery-3.6.1.min.js"></script>

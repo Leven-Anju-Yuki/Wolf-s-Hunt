@@ -3,9 +3,9 @@
     --text-dark: #333; /* Couleur sombre pour le texte */
     --sea-green: #2e8b57; /* Vert mer */
     --background-white: #ffffff; /* Blanc pour le fond de la zone de contenu */
-    --button-color: #8b4513; /* Marron pour les boutons, couleur de l'écorce des arbres */
-    --button-border: #5a2e0f; /* Couleur marron foncée pour les bordures de boutons */
-    --button-shadow: #4e250b; /* Couleur marron plus foncée pour l'ombre */
+    --button-color: #5f300f; /* Couleur verte pour les boutons */
+    --button-border: #388e3c; /* Couleur verte foncée pour les bordures de boutons */
+    --button-shadow: #2e7d32; /* Couleur verte plus foncée pour l'ombre */
     --button-text: #fafafa; /* Couleur claire pour le texte du bouton */
     --button-active-shadow: none; /* Ombre active pour le bouton */
     --button-active-transform: translate(3px, 3px); /* Transformation active pour le bouton */
@@ -31,7 +31,7 @@ body {
 
 h1,
 h2,
-h3 {
+h3,h4,h5 {
     color: var(--sea-green) !important;
 }
 
@@ -44,7 +44,9 @@ ul {
     list-style-type: disc;
     margin-left: 20px;
 }
-
+.modal-dialog {
+    max-width: 90% !important;
+}
 .container {
     max-width: 800px;
     background: var(--background-white) !important;
@@ -126,7 +128,8 @@ button a {
 }
 
 #health-bar,
-#food-bar {
+#food-bar,
+#poison-bar {
     text-align: center;
     padding: 10px;
     background-color: #333;
@@ -136,7 +139,8 @@ button a {
 }
 
 #health,
-#food {
+#food,
+#poison {
     font-weight: bold;
     font-size: 1.2em;
 }
@@ -156,5 +160,8 @@ button a {
         right: 10px;
         width: 200px;
         z-index: 1000;
+    }
+    .modal-dialog {
+        max-width: 90%; /* Ajustement pour les petits écrans */
     }
 }
