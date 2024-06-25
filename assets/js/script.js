@@ -42,18 +42,33 @@ document.addEventListener('DOMContentLoaded', function () {
     wolf.style.left = `${wolfX}px`;
     wolf.style.top = `${wolfY}px`;
 
-    // Diminuer la nourriture de 1 en 1 lors du déplacement du loup
-    function decreaseFood() {
-        food = Math.max(food - 1, 0);
-        if (food < 50) {
-            health = Math.max(health - 5, 0);
-        }
-        updateStatusBars();
+    // Fonction pour détecter la collision entre le loup et la nourriture
+    function checkFoodCollision() {
+        const wolfRect = wolf.getBoundingClientRect();
+        const foods = document.querySelectorAll('.food');
 
-        if (health === 0) {
-            // Afficher la modal de mort du loup
-            $('#deathModal').modal('show');
-        }
+        foods.forEach(food => {
+            const foodRect = food.getBoundingClientRect();
+
+            if (isCollision(wolfRect, foodRect)) {
+                // Le loup a mangé la nourriture
+                food.remove(); // Supprimer l'élément visuel de nourriture
+                food.style.top = '-100px'; // Déplacer la nourriture hors de l'écran (optionnel)
+                food.style.left = '-100px'; // Déplacer la nourriture hors de l'écran (optionnel)
+
+                // Augmenter la nourriture et la santé du loup
+                food += 10;
+                if (food > 100) food = 100; // Limiter la nourriture à 100
+
+                health += 10;
+                if (health > 100) health = 100; // Limiter la santé à 100
+
+                // Mettre à jour visuellement les barres de nourriture et de santé
+                updateStatusBars();
+
+                console.log('Le loup a mangé de la nourriture. Nourriture actuelle : ', food);
+            }
+        });
     }
 
     // Déplacement du loup avec les touches du clavier
@@ -76,20 +91,63 @@ document.addEventListener('DOMContentLoaded', function () {
         wolf.style.left = `${wolfX}px`;
         wolf.style.top = `${wolfY}px`;
 
-        // Appel à la fonction pour diminuer la nourriture à chaque déplacement du loup
+        // Faire diminuer la barre de nourriture à chaque mouvement du loup
         decreaseFood();
+        
+        // Vérifier la collision avec la nourriture après chaque déplacement
+        checkFoodCollision();
+
+        // Vérifier si la barre de nourriture est inférieure à 50 et réduire la santé si nécessaire
+        if (food < 50) {
+            decreaseHealth(5); // Diminuer la santé de 5 points
+        }
+
+        // Vérifier si la santé du loup est épuisée
+        if (health <= 0) {
+            gameOver(); // Déclencher la fin de partie
+        }
     });
 
-    // Mettre à jour les dimensions de l'écran de jeu lors du redimensionnement de la fenêtre
-    window.addEventListener('resize', function () {
-        gameScreenRect = gameScreen.getBoundingClientRect();
+    // Fonction pour faire diminuer la barre de nourriture
+    function decreaseFood() {
+        food -= 1;
+        if (food < 0) food = 0; // Limiter la nourriture à 0
+        updateStatusBars(); // Mettre à jour visuellement la barre de nourriture
 
-        // Recentrer le loup après redimensionnement
-        wolfX = Math.min(wolfX, gameScreenRect.width - wolf.offsetWidth);
-        wolfY = Math.min(wolfY, gameScreenRect.height - wolf.offsetHeight);
-        wolf.style.left = `${wolfX}px`;
-        wolf.style.top = `${wolfY}px`;
-    });
+        // Faire baisser la santé lorsque la nourriture atteint 50
+        if (food < 50) {
+            decreaseHealth(5); // Diminuer la santé de 5 points
+        }
+    }
+
+    // Fonction pour faire diminuer la barre de santé
+    function decreaseHealth(amount) {
+        health -= amount;
+        if (health < 0) health = 0; // Limiter la santé à 0
+        updateStatusBars(); // Mettre à jour visuellement la barre de santé
+
+        // Vérifier si la santé du loup est épuisée
+        if (health <= 0) {
+            gameOver(); // Déclencher la fin de partie
+        }
+    }
+
+    // Fonction pour gérer la fin de partie
+    function gameOver() {
+        // Afficher une modal ou un message indiquant que le loup est mort
+        alert("Le loup est mort !");
+
+        // Réinitialiser le jeu en rechargeant la page
+        location.reload();
+    }
+
+    // Fonction utilitaire pour vérifier la collision entre deux éléments
+    function isCollision(rect1, rect2) {
+        return !(rect1.right < rect2.left ||
+            rect1.left > rect2.right ||
+            rect1.bottom < rect2.top ||
+            rect1.top > rect2.bottom);
+    }
 
     // Générer de la nourriture de manière aléatoire
     function generateFood() {
@@ -108,45 +166,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     setInterval(generateFood, 3000); // Générer de la nourriture toutes les 3 secondes
-
-    // Vérifier la collision entre le loup et un élément de nourriture
-    function isCollision(wolf, food) {
-        const wolfRect = wolf.getBoundingClientRect();
-        const foodRect = food.getBoundingClientRect();
-
-        return !(
-            wolfRect.top > foodRect.bottom ||
-            wolfRect.bottom < foodRect.top ||
-            wolfRect.left > foodRect.right ||
-            wolfRect.right < foodRect.left
-        );
-    }
-
-    // Recharger le jeu lorsque la modal de mort du loup est fermée
-    $('#deathModal').on('hidden.bs.modal', function () {
-        // Réinitialiser les variables de jeu
-        health = 100;
-        food = 100;
-        poison = 0;
-        updateStatusBars();
-
-        // Réinitialiser la position du loup
-        wolfX = gameScreenRect.width / 2 - wolf.offsetWidth / 2;
-        wolfY = gameScreenRect.height / 2 - wolf.offsetHeight / 2;
-        wolf.style.left = `${wolfX}px`;
-        wolf.style.top = `${wolfY}px`;
-
-        // Supprimer tous les éléments de nourriture
-        const foods = document.querySelectorAll('.food');
-        foods.forEach(food => food.remove());
-
-        // Redémarrer la génération de nourriture
-        generateFood();
-    });
-
-    // Redémarrer le jeu en cliquant sur le bouton "Recommencer"
-    document.getElementById('restartGameBtn').addEventListener('click', function () {
-        $('#deathModal').modal('hide');
-    });
-
 });
