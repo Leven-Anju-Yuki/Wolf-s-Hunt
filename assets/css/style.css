@@ -1,0 +1,160 @@
+:root {
+    --background-light-green: #e6f2e6; /* Vert clair */
+    --text-dark: #333; /* Couleur sombre pour le texte */
+    --sea-green: #2e8b57; /* Vert mer */
+    --background-white: #ffffff; /* Blanc pour le fond de la zone de contenu */
+    --button-color: #8b4513; /* Marron pour les boutons, couleur de l'écorce des arbres */
+    --button-border: #5a2e0f; /* Couleur marron foncée pour les bordures de boutons */
+    --button-shadow: #4e250b; /* Couleur marron plus foncée pour l'ombre */
+    --button-text: #fafafa; /* Couleur claire pour le texte du bouton */
+    --button-active-shadow: none; /* Ombre active pour le bouton */
+    --button-active-transform: translate(3px, 3px); /* Transformation active pour le bouton */
+    --button-link: #388e3c; /* Couleur des liens dans le bouton */
+    --button-link-shadow: #fafafad8; /* Ombre du texte des liens dans le bouton */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    z-index: -100;
+    background: url(../img/fond.avif);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: var(--text-dark) !important;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--sea-green) !important;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.container {
+    max-width: 800px;
+    background: var(--background-white) !important;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    margin: 10px 0;
+    color: var(--text-dark) !important;
+}
+
+button {
+    font-size: 1.4em;
+    color: var(--button-text);
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--button-border) !important;
+    background-color: var(--button-color) !important;
+    box-shadow: 3px 3px var(--button-shadow) !important;
+    cursor: pointer;
+    margin: 5px 0;
+    font-family: "titre", "serif";
+}
+
+button:active {
+    box-shadow: var(--button-active-shadow);
+    transform: var(--button-active-transform);
+}
+
+button a {
+    list-style-type: none;
+    text-decoration: none;
+    font-size: 1.4em;
+    color: var(--button-link);
+    text-shadow: 1px 1px var(--button-link-shadow);
+}
+
+#statusBars {
+    top: 10vh;
+    position: fixed;
+    right: 10px;
+    width: 200px;
+    z-index: 1000;
+}
+
+.regle {
+    top: 11vh;
+    position: fixed;
+    left: 10px;
+    width: 150px;
+    z-index: 1000;
+}
+
+.regle img {
+    width: 40%;
+}
+
+.ttbar {
+    background-color: rgba(250, 235, 215, 0.675);
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+#wolf {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+}
+
+#game-screen {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#health-bar,
+#food-bar {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#health,
+#food {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+@media only screen and (max-width: 768px) {
+    .regle {
+        top: 13vh;
+        position: fixed;
+        left: 5px;
+        width: 100px;
+        z-index: 1000;
+    }
+
+    #statusBars {
+        top: 13vh;
+        position: fixed;
+        right: 10px;
+        width: 200px;
+        z-index: 1000;
+    }
+}

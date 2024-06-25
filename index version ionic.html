@@ -1,0 +1,86 @@
+<!-- src/app/rules/rules.component.html -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Règles du Jeu "Wolf's Hunt"</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-card class="container">
+      <ion-card-content>
+        <h2>Objectif :</h2>
+        <p>Le but du jeu est de guider un loup à travers un environnement forestier pour qu'il puisse se nourrir de manière sécurisée, en évitant les aliments empoisonnés et en se purgeant avec des herbes lorsqu'il ingère quelque chose de toxique.</p>
+        
+        <h2>Mécanique de Jeu :</h2>
+        <h3>Déplacement :</h3>
+        <ul>
+          <li>Utilisez les touches de direction (flèches) ou les touches OKLM pour déplacer le loup sur l'écran.</li>
+          <li>Le loup peut se déplacer dans toutes les directions : haut, bas, gauche et droite.</li>
+        </ul>
+        
+        <h3>Collecte de Nourriture :</h3>
+        <ul>
+          <li>La nourriture apparaît aléatoirement sur l'écran.</li>
+          <li>La nourriture saine augmentera la santé du loup.</li>
+          <li>Les aliments toxiques réduiront la santé du loup.</li>
+        </ul>
+        
+        <h3>Nourriture Saine :</h3>
+        <ul>
+          <li>Les aliments sains (par exemple, viandes, baies, poissons) augmentent la jauge de santé du loup de 10 points.</li>
+          <li>Le loup doit consommer autant de nourriture saine que possible pour maintenir sa santé.</li>
+        </ul>
+        
+        <h3>Aliments Toxiques :</h3>
+        <ul>
+          <li>Les aliments toxiques (par exemple, champignons vénéneux, viande pourrie) diminuent la jauge de santé du loup de 15 points.</li>
+          <li>Si le loup mange un aliment toxique, il doit se purger pour éviter de perdre trop de santé.</li>
+        </ul>
+        
+        <h3>Herbes pour la Purge :</h3>
+        <ul>
+          <li>Les herbes apparaissent aléatoirement sur l'écran.</li>
+          <li>Si le loup mange un aliment toxique, vous devez le déplacer vers une herbe pour se purger.</li>
+          <li>La consommation d'herbes annule l'effet toxique et restaure 10 points de santé.</li>
+        </ul>
+        
+        <h3>Jauge de Santé :</h3>
+        <ul>
+          <li>La jauge de santé du loup est affichée en haut de l'écran.</li>
+          <li>Le jeu commence avec la jauge de santé à 100 points.</li>
+          <li>Si la jauge de santé atteint 0, le jeu est terminé.</li>
+        </ul>
+        
+        <h2>Instructions :</h2>
+        <ul>
+          <li>Déplacez le loup en utilisant les touches de direction ou OKLM.</li>
+          <li>Cherchez et mangez de la nourriture saine pour maintenir et augmenter la santé du loup.</li>
+          <li>Évitez les aliments toxiques ou, si ingérés, déplacez-vous rapidement vers les herbes pour vous purger.</li>
+          <li>Survivez aussi longtemps que possible en maintenant la jauge de santé au-dessus de 0.</li>
+          <li>Progressez à travers les niveaux et atteignez le score le plus élevé possible.</li>
+        </ul>
+        
+        <h2>Fin de Partie :</h2>
+        <ul>
+          <li>La partie se termine lorsque la jauge de santé du loup atteint 0.</li>
+          <!-- <li>Le score final est affiché, et vous pouvez choisir de recommencer le jeu ou quitter.</li> -->
+        </ul>
+        
+        <h2>Conseils :</h2>
+        <ul>
+          <li>Soyez attentif aux aliments qui apparaissent. Apprenez à reconnaître rapidement les toxiques.</li>
+          <li>Utilisez les herbes efficacement pour gérer les effets toxiques.</li>
+          <li>Planifiez vos mouvements pour maximiser la collecte de nourriture saine et minimiser les risques.</li>
+        </ul>
+        
+        <p>Amusez-vous et bonne chasse !</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  
