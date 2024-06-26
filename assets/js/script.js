@@ -22,11 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "./assets/img/nourriture/poisson.png",
         "./assets/img/nourriture/champi.png",
     ]; // Images de nourriture
-    const poisonImage = [
+    const poisonImages = [
         "./assets/img/poison/champitoxique.png",
         "./assets/img/poison/viandepourri.png",
-    ]; // Image du poison
-    const healingImages = ["./assets/img/remede/plante.png", "./assets/img/remede/fiole.png"]; // Images de soins
+    ]; // Images de poison
+    const healingImages = [
+        "./assets/img/remede/plante.png",
+        "./assets/img/remede/fiole.png",
+    ]; // Images de soins
 
     // Mise à jour des barres
     function updateStatusBars() {
@@ -65,36 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
     wolf.style.left = `${wolfX}px`;
     wolf.style.top = `${wolfY}px`;
 
-    // Fonction pour détecter la collision entre le loup et la nourriture
-    function checkFoodCollision() {
-        const wolfRect = wolf.getBoundingClientRect();
-        const foods = document.querySelectorAll(".food");
-
-        foods.forEach((foodItem) => {
-            const foodRect = foodItem.getBoundingClientRect();
-
-            if (isCollision(wolfRect, foodRect)) {
-                // Le loup a mangé la nourriture
-                foodItem.remove(); // Supprimer l'élément visuel de nourriture
-
-                // Augmenter la nourriture et la santé du loup
-                food += 10;
-                if (food > 100) food = 100; // Limiter la nourriture à 100
-
-                health += 5;
-                if (health > 100) health = 100; // Limiter la santé à 100
-
-                // Mettre à jour visuellement les barres de nourriture et de santé
-                updateStatusBars();
-
-                console.log("Le loup a mangé de la nourriture. Nourriture actuelle : ", food);
-            }
-        });
-    }
-
     // Déplacement du loup avec les touches du clavier
     document.addEventListener("keydown", function (event) {
-        const step = 10;
+        const step = 30;
         switch (event.key) {
             case "ArrowUp":
                 wolfY = Math.max(wolfY - step, 0);
@@ -112,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
         wolf.style.left = `${wolfX}px`;
         wolf.style.top = `${wolfY}px`;
 
-        // Faire diminuer la barre de nourriture à chaque mouvement du loup
-        decreaseFood();
-
         // Vérifier la collision avec la nourriture après chaque déplacement
         checkFoodCollision();
+
+        // Faire diminuer la barre de nourriture à chaque mouvement du loup
+        decreaseFood();
 
         // Vérifier si la barre de nourriture est inférieure à 50 et réduire la santé si nécessaire
         if (food < 50) {
@@ -126,11 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Vérifier si la barre de poison est supérieure à 50 et réduire la santé si nécessaire
         if (poison > 50) {
             decreaseHealth(10); // Diminuer la santé de 10 points
-        }
-
-        // Vérifier si la santé du loup est épuisée
-        if (health <= 0) {
-            gameOver(); // Déclencher la fin de partie
         }
     });
 
@@ -160,8 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fonction pour gérer la fin de partie
     function gameOver() {
-        // Afficher la modal
-        deathModal.show();
+        deathModal.show(); // Afficher la modal de fin de partie
     }
 
     // Réinitialiser le jeu en fermant la modal
@@ -178,6 +148,33 @@ document.addEventListener("DOMContentLoaded", function () {
             rect1.bottom < rect2.top ||
             rect1.top > rect2.bottom
         );
+    }
+
+    // Fonction pour détecter la collision entre le loup et la nourriture
+    function checkFoodCollision() {
+        const wolfRect = wolf.getBoundingClientRect();
+        const foods = document.querySelectorAll(".food");
+
+        foods.forEach((foodItem) => {
+            const foodRect = foodItem.getBoundingClientRect();
+
+            if (isCollision(wolfRect, foodRect)) {
+                // Le loup a mangé la nourriture
+                foodItem.remove(); // Supprimer l'élément visuel de nourriture
+
+                // Augmenter la nourriture et la santé du loup
+                food += 40;
+                if (food > 100) food = 100; // Limiter la nourriture à 100
+
+                health += 15;
+                if (health > 100) health = 100; // Limiter la santé à 100
+
+                // Mettre à jour visuellement les barres de nourriture et de santé
+                updateStatusBars();
+
+                console.log("Le loup a mangé de la nourriture. Nourriture actuelle : ", food);
+            }
+        });
     }
 
     // Générer de la nourriture de manière aléatoire avec des images différentes
@@ -205,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             poisonItem.style.position = "absolute";
             poisonItem.style.width = "70px";
             poisonItem.style.height = "70px";
-            poisonItem.src = poisonImage[Math.floor(Math.random() * poisonImage.length)]; // Choisi une image aléatoire
+            poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)]; // Choisi une image aléatoire
             poisonItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             poisonItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(poisonItem);
@@ -279,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Générer de la nourriture, de poison et de soins de manière périodique
+    // Générer de la nourriture, de poison et des soins de manière périodique
     setInterval(generateFood, 3000); // Générer de la nourriture toutes les 3 secondes
     setInterval(generatePoison, 5000); // Générer du poison toutes les 5 secondes
     setInterval(generateHealing, 7000); // Générer des soins toutes les 7 secondes
