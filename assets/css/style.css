@@ -203,29 +203,33 @@ button a {
     background-color: var(--sea-green);
 }
 #mobile-controls {
+    display: none; /* Par défaut, caché */
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Assurez-vous que les contrôles sont au-dessus du reste du contenu */
+    z-index: 1000;
+}
+
+#upArrow {
+    display: block;
+    margin: 0 auto 10px;
 }
 
 .arrow {
+    display: inline-block;
     width: 50px;
     height: 50px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--button-color);
+    border: 2px solid var(--button-border);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
     font-size: 24px;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 50%;
-    touch-action: manipulation; /* Améliore la réactivité des clics sur mobile */
+    border-radius: 5px;
+    padding: 3px;
+    /* cursor: pointer; */
+    user-select: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -236,7 +240,11 @@ button a {
         width: 100px;
         z-index: 1000;
     }
-
+    #mobile-controls {
+        display: flex; /* Afficher les contrôles sur les écrans plus petits */
+        flex-direction: column;
+        align-items: center;
+    }
     #statusBars {
         top: 13vh;
         position: fixed;

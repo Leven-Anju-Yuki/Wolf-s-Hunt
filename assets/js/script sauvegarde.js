@@ -6,40 +6,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     const restartGameBtn = document.getElementById("restartGameBtn");
 
-    // Initialisation des barres
     let health = 200;
     let food = 400;
     let poison = 0;
-    let isWolfDead = false; // Ajout de la variable pour suivre l'état du loup
+    let isWolfDead = false;
 
     const healthSpan = document.getElementById("health");
     const foodSpan = document.getElementById("food");
     const poisonSpan = document.getElementById("poison");
 
-    // Suivi du temps de jeu et des événements
     let startTime = Date.now();
     let foodCount = 0;
     let poisonCount = 0;
     let healingCount = 0;
 
-    // Chargement des images
-    const wolfImg = "./assets/img/loup.webp"; // Image du loup
-    const deadWolfImg = "./assets/img/loup mort.png"; // Image du loup mort
+    const wolfImg = "./assets/img/loup.webp";
+    const deadWolfImg = "./assets/img/loup mort.png";
     const foodImages = [
         "./assets/img/nourriture/viande.png",
         "./assets/img/nourriture/poisson.png",
         "./assets/img/nourriture/champi.png",
-    ]; // Images de nourriture
+    ];
     const poisonImages = [
         "./assets/img/poison/champitoxique.png",
         "./assets/img/poison/viandepourri.png",
-    ]; // Images de poison
-    const healingImages = [
-        "./assets/img/remede/plante.png",
-        "./assets/img/remede/fiole.png",
-    ]; // Images de soins
+    ];
+    const healingImages = ["./assets/img/remede/plante.png", "./assets/img/remede/fiole.png"];
 
-    // Mise à jour des barres
     function updateStatusBars() {
         healthSpan.textContent = health;
         foodSpan.textContent = food;
@@ -50,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Exemple de mise à jour de la barre d'empoisonnement
     function increasePoison(amount) {
         poison += amount;
         if (poison > 100) poison = 100;
@@ -63,10 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         updateStatusBars();
     }
 
-    // Appeler cette fonction pour mettre à jour les barres au démarrage
     updateStatusBars();
 
-    // Position initiale du loup (centre de l'écran)
     let gameScreenRect = gameScreen.getBoundingClientRect();
     let wolfX = gameScreenRect.width / 2 - wolf.offsetWidth / 2;
     let wolfY = gameScreenRect.height / 2 - wolf.offsetHeight / 2;
@@ -76,9 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
     wolf.style.left = `${wolfX}px`;
     wolf.style.top = `${wolfY}px`;
 
-    // Déplacement du loup avec les touches du clavier
     document.addEventListener("keydown", function (event) {
-        if (!isWolfDead) { // Le loup ne peut se déplacer que s'il n'est pas mort
+        if (!isWolfDead) {
             const step = 30;
             switch (event.key) {
                 case "ArrowUp":
@@ -96,56 +85,43 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             wolf.style.left = `${wolfX}px`;
             wolf.style.top = `${wolfY}px`;
-
-            // Vérifier la collision avec la nourriture après chaque déplacement
             checkFoodCollision();
-
-            // Faire diminuer la barre de nourriture à chaque mouvement du loup
             decreaseFood();
 
-            // Vérifier si la barre de nourriture est inférieure à 50 et réduire la santé si nécessaire
             if (food < 50) {
-                decreaseHealth(2); // Diminuer la santé de 2 points
+                decreaseHealth(2);
             }
 
-            // Vérifier si la barre de poison est supérieure à 50 et réduire la santé si nécessaire
             if (poison > 50) {
-                decreaseHealth(10); // Diminuer la santé de 10 points
+                decreaseHealth(10);
             }
         }
     });
 
-    // Fonction pour faire diminuer la barre de nourriture
     function decreaseFood() {
-        if (!isWolfDead) { // La nourriture diminue seulement si le loup est vivant
+        if (!isWolfDead) {
             food -= 1;
-            if (food < 0) food = 0; // Limiter la nourriture à 0
-            updateStatusBars(); // Mettre à jour visuellement la barre de nourriture
-
-            // Faire baisser la santé lorsque la nourriture atteint 50
+            if (food < 0) food = 0;
+            updateStatusBars();
             if (food < 50) {
-                decreaseHealth(2); // Diminuer la santé de 2 points
+                decreaseHealth(2);
             }
         }
     }
 
-    // Fonction pour faire diminuer la barre de santé
     function decreaseHealth(amount) {
-        if (!isWolfDead) { // La santé diminue seulement si le loup est vivant
+        if (!isWolfDead) {
             health -= amount;
-            if (health < 0) health = 0; // Limiter la santé à 0
-            updateStatusBars(); // Mettre à jour visuellement la barre de santé
-
-            // Vérifier si la santé du loup est épuisée
+            if (health < 0) health = 0;
+            updateStatusBars();
             if (health <= 0) {
-                gameOver(); // Déclencher la fin de partie
+                gameOver();
             }
         }
     }
 
-    // Fonction pour gérer la fin de partie
     function gameOver() {
-        isWolfDead = true; // Le loup est maintenant mort
+        isWolfDead = true;
         const endTime = Date.now();
         const gameTime = Math.floor((endTime - startTime) / 1000);
         document.getElementById("gameTime").textContent = gameTime;
@@ -153,14 +129,12 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("poisonCount").textContent = poisonCount;
         document.getElementById("healingCount").textContent = healingCount;
 
-        wolf.src = deadWolfImg; // Changer l'image du loup à l'image du loup mort
-
-        deathModal.show(); // Afficher la modal de fin de partie
+        wolf.src = deadWolfImg;
+        deathModal.show();
     }
 
-    // Réinitialiser le jeu en fermant la modal
     restartGameBtn.addEventListener("click", function () {
-        isWolfDead = false; // Réinitialiser le statut du loup
+        isWolfDead = false;
         health = 200;
         food = 400;
         poison = 0;
@@ -169,14 +143,12 @@ document.addEventListener("DOMContentLoaded", function () {
         healingCount = 0;
         startTime = Date.now();
 
-        wolf.src = wolfImg; // Réinitialiser l'image du loup
-
+        wolf.src = wolfImg;
         updateStatusBars();
         deathModal.hide();
-        location.reload(); // Recharger la page pour réinitialiser complètement le jeu
+        location.reload();
     });
 
-    // Fonction utilitaire pour vérifier la collision entre deux éléments
     function isCollision(rect1, rect2) {
         return !(
             rect1.right < rect2.left ||
@@ -186,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // Fonction pour détecter la collision entre le loup et la nourriture
     function checkFoodCollision() {
         const wolfRect = wolf.getBoundingClientRect();
         const foods = document.querySelectorAll(".food");
@@ -195,75 +166,62 @@ document.addEventListener("DOMContentLoaded", function () {
             const foodRect = foodItem.getBoundingClientRect();
 
             if (isCollision(wolfRect, foodRect)) {
-                // Le loup a mangé la nourriture
-                foodItem.remove(); // Supprimer l'élément visuel de nourriture
-
-                // Augmenter la nourriture et la santé du loup
+                foodItem.remove();
                 food += 40;
-                if (food > 400) food = 400; // Limiter la nourriture à 400
-
+                if (food > 400) food = 400;
                 health += 15;
-                if (health > 200) health = 200; // Limiter la santé à 200
-
+                if (health > 200) health = 200;
                 foodCount++;
-
-                // Mettre à jour visuellement les barres de nourriture et de santé
                 updateStatusBars();
-
-                console.log("Le loup a mangé de la nourriture. Nourriture actuelle : ", food);
             }
         });
     }
 
-    // Générer de la nourriture de manière aléatoire avec des images différentes
     function generateFood() {
         const foodCount = document.querySelectorAll(".food").length;
-        if (foodCount < 10) {
+        if (foodCount < 5) {
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
             foodItem.style.width = "70px";
             foodItem.style.height = "70px";
-            foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)]; // Choisi une image aléatoire
+            foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)];
             foodItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             foodItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(foodItem);
         }
     }
 
-    // Générer du poison de manière aléatoire avec une image fixe
     function generatePoison() {
         const poisonCount = document.querySelectorAll(".poison").length;
-        if (poisonCount < 10) {
+        if (poisonCount < 3) {
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
             poisonItem.style.width = "70px";
             poisonItem.style.height = "70px";
-            poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)]; // Choisi une image aléatoire
+            poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)];
             poisonItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             poisonItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(poisonItem);
         }
     }
 
-    // Générer des soins de manière aléatoire avec des images différentes
     function generateHealing() {
         const healingCount = document.querySelectorAll(".healing").length;
-        if (healingCount < 3) {
+        if (healingCount < 2) {
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
             healingItem.style.width = "70px";
             healingItem.style.height = "70px";
-            healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)]; // Choisir une image aléatoire
+            healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)];
             healingItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             healingItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(healingItem);
         }
     }
 
-    // Fonction pour détecter la collision entre le loup et le poison
     function checkPoisonCollision() {
         const wolfRect = wolf.getBoundingClientRect();
         const poisons = document.querySelectorAll(".poison");
@@ -272,22 +230,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const poisonRect = poisonItem.getBoundingClientRect();
 
             if (isCollision(wolfRect, poisonRect)) {
-                // Le loup a touché du poison
-                poisonItem.remove(); // Supprimer l'élément visuel de poison
-
-                // Augmenter la barre de poison
+                poisonItem.remove();
                 increasePoison(25);
-
                 poisonCount++;
-
                 updateStatusBars();
-
-                console.log("Le loup a touché du poison. Empoisonnement actuel : ", poison);
             }
         });
     }
 
-    // Fonction pour détecter la collision entre le loup et les soins
     function checkHealingCollision() {
         const wolfRect = wolf.getBoundingClientRect();
         const healings = document.querySelectorAll(".healing");
@@ -296,34 +246,66 @@ document.addEventListener("DOMContentLoaded", function () {
             const healingRect = healingItem.getBoundingClientRect();
 
             if (isCollision(wolfRect, healingRect)) {
-                // Le loup a touché un soin
-                healingItem.remove(); // Supprimer l'élément visuel de soin
-
-                // Diminuer la barre de poison et augmenter la santé
-                decreasePoison(25);
-                health += 15;
-                if (health > 200) health = 200; // Limiter la santé à 200
-
+                healingItem.remove();
+                decreasePoison(20);
                 healingCount++;
-
                 updateStatusBars();
-
-                console.log(
-                    "Le loup a touché un soin. Santé actuelle : ",
-                    health,
-                    " Empoisonnement actuel : ",
-                    poison
-                );
             }
         });
     }
 
-    // Générer de la nourriture, de poison et des soins de manière périodique
-    setInterval(generateFood, 3000); // Générer de la nourriture toutes les 3 secondes
-    setInterval(generatePoison, 1000); // Générer du poison toutes les 1 seconde
-    setInterval(generateHealing, 7000); // Générer des soins toutes les 7 secondes
+    function gameLoop() {
+        if (!isWolfDead) {
+            generateFood();
+            generatePoison();
+            generateHealing();
+            checkFoodCollision();
+            checkPoisonCollision();
+            checkHealingCollision();
+            decreaseFood();
+            if (food < 50) {
+                decreaseHealth(2);
+            }
+            if (poison > 50) {
+                decreaseHealth(10);
+            }
+        }
+        setTimeout(gameLoop, 2000); // Intervalle de génération des éléments réduit
+    }
 
-    // Vérifier les collisions de poison et de soins
-    setInterval(checkPoisonCollision, 100); // Vérifier les collisions de poison toutes les 100ms
-    setInterval(checkHealingCollision, 100); // Vérifier les collisions de soins toutes les 100ms
+    gameLoop();
+
+    // Détection des boutons mobiles
+    const upArrow = document.getElementById("upArrow");
+    const downArrow = document.getElementById("downArrow");
+    const leftArrow = document.getElementById("leftArrow");
+    const rightArrow = document.getElementById("rightArrow");
+
+    upArrow.addEventListener("click", function () {
+        wolfY = Math.max(wolfY - 30, 0);
+        wolf.style.top = `${wolfY}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    downArrow.addEventListener("click", function () {
+        wolfY = Math.min(wolfY + 30, gameScreenRect.height - wolf.offsetHeight);
+        wolf.style.top = `${wolfY}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    leftArrow.addEventListener("click", function () {
+        wolfX = Math.max(wolfX - 30, 0);
+        wolf.style.left = `${wolfX}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    rightArrow.addEventListener("click", function () {
+        wolfX = Math.min(wolfX + 30, gameScreenRect.width - wolf.offsetWidth);
+        wolf.style.left = `${wolfX}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
 });
