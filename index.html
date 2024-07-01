@@ -58,9 +58,11 @@
                                     <h3>Déplacement :</h3>
                                     <ul>
                                         <li>
-                                            Utilisez les touches de direction (flèches) ou les
-                                            touches OKLM pour déplacer le loup sur l'écran.
+                                            Utilisez les touches de direction (flèches) pour
+                                            déplacer le loup sur l'écran.
                                         </li>
+                                        <!--ou les touches OKLM-->
+
                                         <li>
                                             Le loup peut se déplacer dans toutes les directions :
                                             haut, bas, gauche et droite.
@@ -69,16 +71,57 @@
                                     <h3>Collecte de Nourriture :</h3>
                                     <ul>
                                         <li>La nourriture apparaît aléatoirement sur l'écran.</li>
-                                        <li>La nourriture saine augmentera la santé du loup.</li>
-                                        <li>Les aliments toxiques réduiront la santé du loup.</li>
+                                        <li>
+                                            La nourriture saine augmentera la santé du loup.<img
+                                                width="50px"
+                                                src="./assets/img/nourriture/champi.png"
+                                                alt=""
+                                            />
+                                            <img
+                                                width="50px"
+                                                src="./assets/img/nourriture/poisson.png"
+                                                alt=""
+                                            />
+                                            <img
+                                                width="50px"
+                                                src="./assets/img/nourriture/viande.png"
+                                                alt=""
+                                            />
+                                        </li>
+                                        <li>
+                                            Les aliments toxiques réduiront la santé du loup.<img
+                                                width="50px"
+                                                src="./assets/img/poison/champitoxique.png"
+                                                alt=""
+                                            />
+                                            <img
+                                                width="50px"
+                                                src="./assets/img/poison/viandepourri.png"
+                                                alt=""
+                                            />
+                                        </li>
+                                        <li>
+                                            Les aliments de soin réduiront l'empoisonnement du loup
+                                            et lui rendront de la santé.<img
+                                                width="50px"
+                                                src="./assets/img/remede/fiole.png"
+                                                alt=""
+                                            />
+                                            <img
+                                                width="50px"
+                                                src="./assets/img/remede/plante.png"
+                                                alt=""
+                                            />
+                                        </li>
                                     </ul>
                                     <h3>Nourriture Saine :</h3>
                                     <ul>
                                         <li>
                                             Les aliments sains (par exemple, viandes, baies,
-                                            poissons) augmentent la jauge de santé du loup de 10
-                                            points.
+                                            poissons) augmentent la jauge de santé du loup
                                         </li>
+                                        <!--de 10
+                                            points.-->
                                         <li>
                                             Le loup doit consommer autant de nourriture saine que
                                             possible pour maintenir sa santé.
@@ -88,9 +131,10 @@
                                     <ul>
                                         <li>
                                             Les aliments toxiques (par exemple, champignons
-                                            vénéneux, viande pourrie) diminuent la jauge de santé du
-                                            loup de 15 points.
+                                            vénéneux, viande pourrie) augemente la jauge
+                                            d'empoisonnement du loup
                                         </li>
+                                        <!--de 15 points.-->
                                         <li>
                                             Si le loup mange un aliment toxique, il doit se purger
                                             pour éviter de perdre trop de santé.
@@ -115,7 +159,7 @@
                                             l'écran.
                                         </li>
                                         <li>
-                                            Le jeu commence avec la jauge de santé à 100 points.
+                                            Le jeu commence avec la jauge de santé à 200 points.
                                         </li>
                                         <li>Si la jauge de santé atteint 0, le jeu est terminé.</li>
                                     </ul>
@@ -124,18 +168,24 @@
                                         <li>Le jeu est divisé en niveaux. Chaque niveau augmente la difficulté en augmentant la fréquence des aliments toxiques.</li>
                                         <li>Au fur et à mesure que les niveaux progressent, la vitesse de déplacement du loup peut également augmenter.</li>
                                     </ul> -->
-                                    <!-- <h3>Score :</h3>
+                                    <h3>Score :</h3>
                                     <ul>
-                                        <li>Le score est basé sur la quantité de nourriture saine consommée.</li>
-                                        <li>Chaque nourriture saine consommée ajoute des points au score total.</li>
-                                        <li>Un tableau de score est affiché à la fin de chaque niveau.</li>
-                                    </ul> -->
+                                        <li>
+                                            Le score est basé sur la quantité de nourriture saine
+                                            empoisoné et de soin consommée.
+                                        </li>
+                                        <li>
+                                            Chaque nourriture consommée ajoute des points au score
+                                            total.
+                                        </li>
+                                        <li>Un tableau de score est affiché à la fin du jeu.</li>
+                                    </ul>
                                     <h2>Instructions :</h2>
                                     <ul>
                                         <li>
                                             Déplacez le loup en utilisant les touches de direction
-                                            ou OKLM.
                                         </li>
+                                        <!--ou OKLM.-->
                                         <li>
                                             Cherchez et mangez de la nourriture saine pour maintenir
                                             et augmenter la santé du loup.
@@ -149,10 +199,10 @@
                                             Survivez aussi longtemps que possible en maintenant la
                                             jauge de santé au-dessus de 0.
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             Progressez à travers les niveaux et atteignez le score
                                             le plus élevé possible.
-                                        </li>
+                                        </li> -->
                                     </ul>
                                     <h2>Fin de Partie :</h2>
                                     <ul>
@@ -160,7 +210,10 @@
                                             La partie se termine lorsque la jauge de santé du loup
                                             atteint 0.
                                         </li>
-                                        <!-- <li>Le score final est affiché, et vous pouvez choisir de recommencer le jeu ou quitter.</li> -->
+                                        <li>
+                                            Le score final est affiché, et vous pouvez choisir de
+                                            recommencer le jeu ou quitter.
+                                        </li>
                                     </ul>
                                     <h2>Conseils :</h2>
                                     <ul>
@@ -185,8 +238,8 @@
                 </div>
             </div>
             <div id="statusBars" class="ttbar">
-                <div id="health-bar">Santé : <span id="health">100</span></div>
-                <div id="food-bar">Nourriture : <span id="food">100</span></div>
+                <div id="health-bar">Santé : <span id="health">200</span></div>
+                <div id="food-bar">Nourriture : <span id="food">400</span></div>
                 <div id="poison-bar">Malade : <span id="poison">0</span></div>
             </div>
         </div>
@@ -196,38 +249,62 @@
             <img id="wolf" src="./assets/img/loup.webp" alt="Loup" />
         </div>
         <!-- Modal pour afficher la mort du loup -->
-        <div
-            class="modal fade"
-            id="deathModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="deathModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="deathModalLabel">
-                            Vous etes mort.<br />Voulez-vous recommencer ?
-                        </h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="background-color: none !important">
-                        <center><img src="./assets/img/tete-mort.png" alt="" /></center>
-                    </div>
-                    <div class="modal-footer">
-                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                            Fermer
-                        </button> -->
-                        <button type="button" class="btn btn-primary" id="restartGameBtn">
-                            Recommencer
-                        </button>
+        <center>
+            <div
+                class="modal fade"
+                id="deathModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="deathModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content fin">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deathModalLabel">Fin de Partie</h5>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Temps de jeu : <span id="gameTime"></span> secondes</p>
+                            <center>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Quantité</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nourriture</td>
+                                            <td id="foodCount"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Poison</td>
+                                            <td id="poisonCount"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Soins</td>
+                                            <td id="healingCount"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <button type="button" class="btn btn-primary" id="restartGameBtn">
+                                Recommencer
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </center>
         <!-- Flèches de déplacement pour les téléphones -->
         <div id="mobile-controls">
             <div id="upArrow" class="arrow">↑</div>
@@ -235,6 +312,7 @@
             <div id="rightArrow" class="arrow">→</div>
             <div id="downArrow" class="arrow">↓</div>
         </div>
+        
         <!-- Scripts -->
         <script src="./assets/js/jquery-3.6.1.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

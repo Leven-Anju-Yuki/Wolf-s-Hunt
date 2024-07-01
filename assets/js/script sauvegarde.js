@@ -34,7 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "./assets/img/poison/champitoxique.png",
         "./assets/img/poison/viandepourri.png",
     ]; // Images de poison
-    const healingImages = ["./assets/img/remede/plante.png", "./assets/img/remede/fiole.png"]; // Images de soins
+    const healingImages = [
+        "./assets/img/remede/plante.png",
+        "./assets/img/remede/fiole.png",
+    ]; // Images de soins
 
     // Mise à jour des barres
     function updateStatusBars() {
@@ -75,8 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Déplacement du loup avec les touches du clavier
     document.addEventListener("keydown", function (event) {
-        if (!isWolfDead) {
-            // Le loup ne peut se déplacer que s'il n'est pas mort
+        if (!isWolfDead) { // Le loup ne peut se déplacer que s'il n'est pas mort
             const step = 30;
             switch (event.key) {
                 case "ArrowUp":
@@ -94,25 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             wolf.style.left = `${wolfX}px`;
             wolf.style.top = `${wolfY}px`;
-            // Écouter les clics sur les flèches de contrôle mobile
-            document.getElementById("upArrow").addEventListener("click", function () {
-                moveWolf("up");
-            });
-            document.getElementById("downArrow").addEventListener("click", function () {
-                moveWolf("down");
-            });
-            document.getElementById("leftArrow").addEventListener("click", function () {
-                moveWolf("left");
-            });
-            document.getElementById("rightArrow").addEventListener("click", function () {
-                moveWolf("right");
-            });
-            // Détection des appareils mobiles
-            if (/Mobi|Android/i.test(navigator.userAgent)) {
-                document.getElementById("mobile-controls").style.display = "flex";
-            } else {
-                document.getElementById("mobile-controls").style.display = "none";
-            }
+
             // Vérifier la collision avec la nourriture après chaque déplacement
             checkFoodCollision();
 
@@ -133,8 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fonction pour faire diminuer la barre de nourriture
     function decreaseFood() {
-        if (!isWolfDead) {
-            // La nourriture diminue seulement si le loup est vivant
+        if (!isWolfDead) { // La nourriture diminue seulement si le loup est vivant
             food -= 1;
             if (food < 0) food = 0; // Limiter la nourriture à 0
             updateStatusBars(); // Mettre à jour visuellement la barre de nourriture
@@ -148,8 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fonction pour faire diminuer la barre de santé
     function decreaseHealth(amount) {
-        if (!isWolfDead) {
-            // La santé diminue seulement si le loup est vivant
+        if (!isWolfDead) { // La santé diminue seulement si le loup est vivant
             health -= amount;
             if (health < 0) health = 0; // Limiter la santé à 0
             updateStatusBars(); // Mettre à jour visuellement la barre de santé

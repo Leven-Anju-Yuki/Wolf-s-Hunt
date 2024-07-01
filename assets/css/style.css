@@ -11,6 +11,8 @@
     --button-active-transform: translate(3px, 3px); /* Transformation active pour le bouton */
     --button-link: #388e3c; /* Couleur des liens dans le bouton */
     --button-link-shadow: #fafafad8; /* Ombre du texte des liens dans le bouton */
+    /* --fond: linear-gradient(#b77e15c1, #000000d4); */
+    --fond: #ecb44dc1;
 }
 
 * {
@@ -30,7 +32,8 @@ body {
 }
 
 h1,
-h2 {
+h2,
+.modal-title {
     color: var(--button-color) !important;
 }
 h3,
@@ -43,10 +46,13 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
 }
-
+.modal-title {
+    font-size: 1.8em !important;
+}
 ul {
     list-style-type: disc;
     margin-left: 20px;
+    font-size: 1.2em;
 }
 .modal-dialog {
     max-width: 90% !important;
@@ -62,6 +68,7 @@ ul {
 p {
     margin: 10px 0;
     color: var(--text-dark) !important;
+    font-size: 1.4em;
 }
 
 button {
@@ -154,12 +161,71 @@ button a {
     width: 100%;
     text-align: center;
 }
+.modal-body,
+.modal-header,
+.modal-footer {
+    background: var(--fond)
+        /*, url("https://res.cloudinary.com/dgrszi9wf/image/upload/v1701424797/Dragon/image/fond.jpg")*/;
+    background-attachment: fixed;
+    /* Fixe l'image d'arrière-plan */
+    background-size: cover;
+    /* Ajuste la taille de l'image d'arrière-plan pour couvrir le conteneur */
+    background-position: center;
+    /* Centre l'image d'arrière-plan */
+}
+.fin {
+    opacity: 0.7; /* Réduction de l'opacité */
+    max-width: 20% !important;
+}
 
 .arrow {
     display: inline-block;
     font-size: 2em;
     padding: 10px;
     cursor: pointer;
+}
+.table {
+    color: var(--button-color) !important;
+    background-color: var(--background-white);
+    width: 60% !important;
+}
+.table th {
+    border: 1px solid var(--sea-green);
+    color: #fbfbfb !important;
+}
+
+.table td {
+    border: 1px solid var(--sea-green);
+    font-weight: bold;
+    color: var(--button-color) !important;
+}
+.table thead th {
+    background-color: var(--sea-green);
+}
+#mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Assurez-vous que les contrôles sont au-dessus du reste du contenu */
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50%;
+    touch-action: manipulation; /* Améliore la réactivité des clics sur mobile */
 }
 
 @media only screen and (max-width: 768px) {
@@ -180,5 +246,9 @@ button a {
     }
     .modal-dialog {
         max-width: 90%; /* Ajustement pour les petits écrans */
+    }
+    .fin {
+        opacity: 0.9; /* Réduction de l'opacité */
+        max-width: 60% !important;
     }
 }
