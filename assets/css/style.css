@@ -148,9 +148,6 @@ button a {
     height: 100vh;
     position: relative;
 }
-
-
-
 #health,
 #food,
 #poison {
@@ -186,6 +183,27 @@ button a {
     padding: 10px;
     cursor: pointer;
 }
+
+/* #arrow-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.arrow {
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #000;
+    cursor: pointer;
+} */
 .table {
     color: var(--button-color) !important;
     background-color: var(--background-white);
