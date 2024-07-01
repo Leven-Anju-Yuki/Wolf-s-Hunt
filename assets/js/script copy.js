@@ -177,9 +177,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function generateFood(maxFood) {
+    function generateFood() {
         const foodCount = document.querySelectorAll(".food").length;
-        if (foodCount < maxFood) {
+        if (foodCount < 5) {
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
@@ -192,9 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function generatePoison(maxPoison) {
+    function generatePoison() {
         const poisonCount = document.querySelectorAll(".poison").length;
-        if (poisonCount < maxPoison) {
+        if (poisonCount < 3) {
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
@@ -207,9 +207,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function generateHealing(maxHealing) {
+    function generateHealing() {
         const healingCount = document.querySelectorAll(".healing").length;
-        if (healingCount < maxHealing) {
+        if (healingCount < 2) {
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
@@ -254,20 +254,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Détection des appareils mobiles
-    function isMobileDevice() {
-        return /Mobi|Android/i.test(navigator.userAgent);
-    }
-
-    const maxFood = isMobileDevice() ? 5 : 10;
-    const maxPoison = isMobileDevice() ? 5 : 10;
-    const maxHealing = isMobileDevice() ? 3 : 5;
-
     function gameLoop() {
         if (!isWolfDead) {
-            generateFood(maxFood);
-            generatePoison(maxPoison);
-            generateHealing(maxHealing);
+            generateFood();
+            generatePoison();
+            generateHealing();
             checkFoodCollision();
             checkPoisonCollision();
             checkHealingCollision();

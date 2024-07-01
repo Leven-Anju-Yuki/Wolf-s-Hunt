@@ -97,34 +97,45 @@ button a {
     color: var(--button-link);
     text-shadow: 1px 1px var(--button-link-shadow);
 }
-
-#statusBars {
-    top: 10vh;
-    position: fixed;
-    right: 10px;
-    width: 200px;
-    z-index: 1000;
-}
-
 .regle {
-    top: 11vh;
+    top: 7vh;
     position: fixed;
     left: 10px;
-    width: 150px;
-    z-index: 1000;
+    width: 80px;
+    /* z-index: 1000; */
+    /* opacity: 0.9; */
 }
 
 .regle img {
-    width: 40%;
+    width: 100%;
 }
-
+#statusBars {
+    top: 2vh !important;
+    position: fixed;
+    right: 5px !important;
+    /* width: 200px; */
+    /* z-index: 1000; */
+    border: 1px black solid;
+    width: fit-content;
+    background-color: rgba(250, 235, 215, 0.479);
+}
 .ttbar {
-    background-color: rgba(250, 235, 215, 0.675);
     padding: 5px;
     border-radius: 10px;
-    border: 1px black solid;
 }
-
+#health-bar,
+#food-bar,
+#poison-bar {
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--button-color);
+    /* opacity: 0.6; */
+    color: var(--button-text);
+    margin: 10px 0;
+    width: 100%;
+}
 #wolf {
     position: absolute;
     width: 100px;
@@ -138,16 +149,7 @@ button a {
     position: relative;
 }
 
-#health-bar,
-#food-bar,
-#poison-bar {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
+
 
 #health,
 #food,
@@ -234,11 +236,11 @@ button a {
 
 @media only screen and (max-width: 768px) {
     .regle {
-        top: 13vh;
+        top: 3vh;
         position: fixed;
         left: 5px;
         width: 100px;
-        z-index: 1000;
+        /* z-index: 1000; */
     }
     #mobile-controls {
         display: flex; /* Afficher les contrôles sur les écrans plus petits */
@@ -246,11 +248,23 @@ button a {
         align-items: center;
     }
     #statusBars {
-        top: 13vh;
+        top: 5vh;
         position: fixed;
-        right: 10px;
+        right: 2px !important;
         width: 200px;
-        z-index: 1000;
+        /* z-index: 1000; */
+    }
+    #health-bar,
+    #food-bar,
+    #poison-bar {
+        padding: 2px;
+        /* opacity: 0.6; */
+        margin: 5px 0;
+        font-size: 1.1em;
+        width: 90%;
+    }
+    .ttbar {
+        padding: 1px;
     }
     .modal-dialog {
         max-width: 90%; /* Ajustement pour les petits écrans */
