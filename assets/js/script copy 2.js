@@ -177,24 +177,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Détection des appareils mobiles
-    function isMobileDevice() {
-        return /Mobi|Android/i.test(navigator.userAgent);
-    }
-
-    const maxFood = isMobileDevice() ? 5 : 10;
-    const maxPoison = isMobileDevice() ? 5 : 10;
-    const maxHealing = isMobileDevice() ? 2 : 5;
-    const imageSize = isMobileDevice() ? 50 : 70; // Définir la taille de l'image en fonction de l'appareil
-
     function generateFood(maxFood) {
         const foodCount = document.querySelectorAll(".food").length;
         if (foodCount < maxFood) {
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
-            foodItem.style.width = `${imageSize}px`; // Utiliser la taille définie
-            foodItem.style.height = `${imageSize}px`; // Utiliser la taille définie
+            foodItem.style.width = "70px";
+            foodItem.style.height = "70px";
             foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)];
             foodItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             foodItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
@@ -208,8 +198,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
-            poisonItem.style.width = `${imageSize}px`; // Utiliser la taille définie
-            poisonItem.style.height = `${imageSize}px`; // Utiliser la taille définie
+            poisonItem.style.width = "70px";
+            poisonItem.style.height = "70px";
             poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)];
             poisonItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             poisonItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
@@ -223,8 +213,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
-            healingItem.style.width = `${imageSize}px`; // Utiliser la taille définie
-            healingItem.style.height = `${imageSize}px`; // Utiliser la taille définie
+            healingItem.style.width = "70px";
+            healingItem.style.height = "70px";
             healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)];
             healingItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
             healingItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
@@ -263,6 +253,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // Détection des appareils mobiles
+    function isMobileDevice() {
+        return /Mobi|Android/i.test(navigator.userAgent);
+    }
+
+    const maxFood = isMobileDevice() ? 5 : 10;
+    const maxPoison = isMobileDevice() ? 5 : 10;
+    const maxHealing = isMobileDevice() ? 3 : 5;
 
     function gameLoop() {
         if (!isWolfDead) {
