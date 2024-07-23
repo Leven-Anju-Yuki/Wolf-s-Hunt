@@ -102,7 +102,7 @@ button a {
     position: fixed;
     left: 10px;
     width: 80px;
-    /* z-index: 1000; */
+    z-index: 1000;
     /* opacity: 0.9; */
 }
 

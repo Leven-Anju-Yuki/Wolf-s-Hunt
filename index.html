@@ -43,11 +43,11 @@
                         <!-- Modal pour les règles du jeu -->
                         <button
                             type="button"
-                            class="btn regle"
+                            class="btn btn-primary regle "
                             data-toggle="modal"
                             data-target="#myModal"
                         >
-                            <img src="./assets/img/regle.png" alt="" />
+                            <img  src="./assets/img/regle.png" alt="" />
                         </button>
                         <div
                             class="modal fade"
@@ -74,6 +74,11 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Contenu des règles du jeu ici -->
+                                        <center>
+                                            <button class="btn-install ml-2" id="installButton" style="display: none">
+                                                <h2>si vous vouler installer l'application</h2>
+                                            </button>
+                                        </center>
                                         <h2>Objectif :</h2>
                                         <p>
                                             Le but du jeu est de guider un loup à travers un
@@ -353,7 +358,6 @@
                     <div id="downArrow" class="arrow">↓</div>
                     <div id="rightArrow" class="arrow">→</div>
                 </div>
-            </div>
             <!-- <div id="arrow-container">
             <div><div id="upArrow" class="arrow">↑</div></div>
             <div id="leftArrow" class="arrow">←</div>
@@ -361,12 +365,6 @@
             <div id="downArrow" class="arrow">↓</div>
         </div> -->
             <!-- Scripts -->
-            <script src="./assets/js/jquery-3.6.1.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script src="./assets/js/bootstrap.min.js"></script>
-            <script src="./assets/js/script.js"></script>
             <script>
                 installButton.addEventListener("click", () => {
                     if (deferredPrompt) {
@@ -387,6 +385,12 @@
                     console.log("PWA was installed");
                 });
             </script>
+            <script src="./assets/js/jquery-3.6.1.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="./assets/js/bootstrap.min.js"></script>
+            <script src="./assets/js/script.js"></script>
         </body>
     </html>
 </DOCTYPE>
