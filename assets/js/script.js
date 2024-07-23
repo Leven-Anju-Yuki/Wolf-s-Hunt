@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".btn.regle");
+    if (button) {
+        button.addEventListener("click", function () {
+            console.log("Le bouton a été cliqué");
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     const wolf = document.getElementById("wolf");
     const gameScreen = document.getElementById("game-screen");
     const deathModal = new bootstrap.Modal(document.getElementById("deathModal"), {
