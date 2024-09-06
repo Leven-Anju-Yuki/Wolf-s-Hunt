@@ -6,7 +6,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
+window.addEventListener("resize", setFavicon);
+window.addEventListener("load", setFavicon);
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").then(
+        function (registration) {
+            console.log("Service Worker registration successful with scope: ", registration.scope);
+        },
+        function (error) {
+            console.log("Service Worker registration failed: ", error);
+        }
+    );
+}
 document.addEventListener("DOMContentLoaded", function () {
     const wolf = document.getElementById("wolf");
     const gameScreen = document.getElementById("game-screen");

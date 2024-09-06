@@ -13,23 +13,7 @@
                 class="icone"
             />
             <link rel="manifest" href="./manifest.json" />
-            <script>
-                window.addEventListener("resize", setFavicon);
-                window.addEventListener("load", setFavicon);
-                if ("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("/sw.js").then(
-                        function (registration) {
-                            console.log(
-                                "Service Worker registration successful with scope: ",
-                                registration.scope
-                            );
-                        },
-                        function (error) {
-                            console.log("Service Worker registration failed: ", error);
-                        }
-                    );
-                }
-            </script>
+            
         </head>
         <body>
             
