@@ -1,6 +1,6 @@
 {
     "name": "Wolf's hunt",
-    "short_name": "Wolf's hunt",
+    "short_name": "Wolf's ",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffffff",
