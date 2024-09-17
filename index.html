@@ -1,22 +1,44 @@
 <DOCTYPE html>
     <html lang="fr">
-        <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Wolf's Hunt</title>
-            <link rel="stylesheet" href="./assets/css/style.css" />
-            <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-            <link
-                rel="shortcut icon"
-                type="image/png"
-                href="./assets/img/favicon.png"
-                class="icone"
-            />
-            <link rel="manifest" href="./manifest.json" />
-            
-        </head>
         <body>
-            
+            <head>
+                <!-- Définition de l'encodage des caractères -->
+    <meta charset="UTF-8" />
+    <!-- Réglage de la fenêtre d'affichage pour une meilleure compatibilité mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Titre de la page -->
+    <title>Wolf Hunt's</title>
+    
+    <!-- Balises Meta SEO -->
+    <meta name="description" content="Participez à une aventure palpitante avec Wolf Hunt's ! Guidez le loup à travers un monde rempli de défis, de nourriture, de poison et de soins." />
+    <meta name="keywords" content="jeu loup, aventure loup, chasse au loup, jeu vidéo, Wolf Hunt's, jeu d'aventure" />
+    <!-- <meta name="author" content="VotreNom" /> -->
+    
+    <!-- Balises Meta Open Graph (OG) pour les réseaux sociaux -->
+    <meta property="og:title" content="Wolf Hunt's - Jeu d'Aventure" />
+    <meta property="og:description" content="Participez à une aventure palpitante avec Wolf Hunt's ! Guidez le loup à travers un monde rempli de défis, de nourriture, de poison et de soins." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://leven-anju-yuki.github.io/Wolf-s-Hunt/" />
+    <meta property="og:image" content="https://leven-anju-yuki.github.io/Wolf-s-Hunt/assets/img/favicon.png" />
+    <meta property="og:site_name" content="Wolf Hunt's" />
+    
+    <!-- Balises Meta Twitter Card pour les réseaux sociaux -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wolf Hunt's - Jeu d'Aventure" />
+    <meta name="twitter:description" content="Participez à une aventure palpitante avec Wolf Hunt's ! Guidez le loup à travers un monde rempli de défis, de nourriture, de poison et de soins." />
+    <meta name="twitter:image" content="https://votre-site.com/assets/img/twitter-image.jpg" />
+    <meta name="twitter:site" content="@VotreTwitter" />
+    
+    <!-- Favicon pour les navigateurs de bureau et mobiles -->
+    <link rel="icon" href="./assets/img/favicon.png" type="image/png">
+    
+    <!-- Fichier manifest pour les applications web progressives -->
+    <link rel="manifest" href="./manifest.json" />
+    
+    <!-- Fichiers CSS pour le style du site -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+</head>  </head>
             <div>
                 <div class="row">
                     <div class="col-12">
@@ -61,198 +83,98 @@
                                         </center>
                                         <h2>Objectif :</h2>
                                         <p>
-                                            Le but du jeu est de guider un loup à travers un
-                                            environnement forestier pour qu'il puisse se nourrir de
-                                            manière sécurisée, en évitant les aliments empoisonnés
-                                            et en se purgeant avec des herbes lorsqu'il ingère
-                                            quelque chose de toxique.
+                                            Le but du jeu est de guider un loup à travers un environnement forestier pour qu'il puisse se nourrir tout en évitant les dangers. Vous devez également faire attention à un ours qui rôde, mangeant la nourriture et les soins, et infligeant des dégâts au loup en cas de collision.
                                         </p>
+                                        
                                         <h2>Mécanique de Jeu :</h2>
+                                        
                                         <h3>Déplacement :</h3>
                                         <ul>
-                                            <li>
-                                                Utilisez les touches de direction (flèches) pour
-                                                déplacer le loup sur l'écran.
-                                            </li>
-                                            <!--ou les touches OKLM-->
-
-                                            <li>
-                                                Le loup peut se déplacer dans toutes les directions
-                                                : haut, bas, gauche et droite.
-                                            </li>
+                                            <li>Utilisez les touches de direction (flèches) pour déplacer le loup sur l'écran.</li>
+                                            <li>Le loup peut se déplacer dans toutes les directions : haut, bas, gauche et droite.</li>
+                                            <li>L'ours se déplace automatiquement et plus rapidement sur la carte.</li>
                                         </ul>
+                                        
                                         <h3>Collecte de Nourriture :</h3>
                                         <ul>
-                                            <li>
-                                                La nourriture apparaît aléatoirement sur l'écran.
+                                            <li>La nourriture apparaît aléatoirement sur l'écran.</li>
+                                            <li>La nourriture saine augmente la santé du loup.
+                                                <img width="50px" src="./assets/img/nourriture/champi.png" alt="Champignon">
+                                                <img width="50px" src="./assets/img/nourriture/poisson.png" alt="Poisson">
+                                                <img width="50px" src="./assets/img/nourriture/viande.png" alt="Viande">
                                             </li>
-                                            <li>
-                                                La nourriture saine augmentera la santé du loup.<img
-                                                    width="50px"
-                                                    src="./assets/img/nourriture/champi.png"
-                                                    alt=""
-                                                />
-                                                <img
-                                                    width="50px"
-                                                    src="./assets/img/nourriture/poisson.png"
-                                                    alt=""
-                                                />
-                                                <img
-                                                    width="50px"
-                                                    src="./assets/img/nourriture/viande.png"
-                                                    alt=""
-                                                />
+                                            <li>Les aliments toxiques réduisent la santé du loup.
+                                                <img width="50px" src="./assets/img/poison/champitoxique.png" alt="Champignon Toxique">
+                                                <img width="50px" src="./assets/img/poison/viandepourri.png" alt="Viande Pourrie">
                                             </li>
-                                            <li>
-                                                Les aliments toxiques réduiront la santé du
-                                                loup.<img
-                                                    width="50px"
-                                                    src="./assets/img/poison/champitoxique.png"
-                                                    alt=""
-                                                />
-                                                <img
-                                                    width="50px"
-                                                    src="./assets/img/poison/viandepourri.png"
-                                                    alt=""
-                                                />
+                                            <li>Les aliments de soin réduisent l'empoisonnement du loup et lui rendent de la santé.
+                                                <img width="50px" src="./assets/img/remede/fiole.png" alt="Fiole">
+                                                <img width="50px" src="./assets/img/remede/plante.png" alt="Plante">
                                             </li>
-                                            <li>
-                                                Les aliments de soin réduiront l'empoisonnement du
-                                                loup et lui rendront de la santé.<img
-                                                    width="50px"
-                                                    src="./assets/img/remede/fiole.png"
-                                                    alt=""
-                                                />
-                                                <img
-                                                    width="50px"
-                                                    src="./assets/img/remede/plante.png"
-                                                    alt=""
-                                                />
-                                            </li>
+                                            <li>L'ours peut également manger de la nourriture et des soins, les retirant de la carte.</li>
                                         </ul>
+                                        
+                                        <h3>Ours : <img  width="50px" src="./assets/img/ours.png" alt=""></h3>
+                                        <ul>
+                                            <li>L'ours se déplace aléatoirement sur la carte.</li>
+                                            <li>Si l'ours entre en collision avec le loup, il lui inflige des dégâts.</li>
+                                            <li>L'ours peut manger la nourriture et les soins avant que le loup n'y parvienne, rendant ces éléments indisponibles.</li>
+                                        </ul>
+                                        
                                         <h3>Nourriture Saine :</h3>
                                         <ul>
-                                            <li>
-                                                Les aliments sains (par exemple, viandes, baies,
-                                                poissons) augmentent la jauge de santé du loup
-                                            </li>
-                                            <!--de 10
-                                            points.-->
-                                            <li>
-                                                Le loup doit consommer autant de nourriture saine
-                                                que possible pour maintenir sa santé.
-                                            </li>
+                                            <li>Les aliments sains augmentent la jauge de santé du loup.</li>
+                                            <li>Le loup doit consommer autant de nourriture saine que possible pour maintenir sa santé.</li>
                                         </ul>
+                                        
                                         <h3>Aliments Toxiques :</h3>
                                         <ul>
-                                            <li>
-                                                Les aliments toxiques (par exemple, champignons
-                                                vénéneux, viande pourrie) augemente la jauge
-                                                d'empoisonnement du loup
-                                            </li>
-                                            <!--de 15 points.-->
-                                            <li>
-                                                Si le loup mange un aliment toxique, il doit se
-                                                purger pour éviter de perdre trop de santé.
-                                            </li>
+                                            <li>Les aliments toxiques augmentent la jauge d'empoisonnement du loup.</li>
+                                            <li>Si le loup mange un aliment toxique, il doit se purger pour éviter de perdre trop de santé.</li>
                                         </ul>
+                                        
                                         <h3>Herbes pour la Purge :</h3>
                                         <ul>
-                                            <li>
-                                                Les herbes apparaissent aléatoirement sur l'écran.
-                                            </li>
-                                            <li>
-                                                Si le loup mange un aliment toxique, vous devez le
-                                                déplacer vers une herbe pour se purger.
-                                            </li>
-                                            <li>
-                                                La consommation d'herbes annule l'effet toxique et
-                                                restaure 10 points de santé.
-                                            </li>
+                                            <li>Les herbes apparaissent aléatoirement sur l'écran.</li>
+                                            <li>Si le loup mange un aliment toxique, il doit se déplacer vers une herbe pour se purger.</li>
+                                            <li>La consommation d'herbes annule l'effet toxique et restaure 10 points de santé.</li>
                                         </ul>
+                                        
                                         <h3>Jauge de Santé :</h3>
                                         <ul>
-                                            <li>
-                                                La jauge de santé du loup est affichée en haut de
-                                                l'écran.
-                                            </li>
-                                            <li>
-                                                Le jeu commence avec la jauge de santé à 200 points.
-                                            </li>
-                                            <li>
-                                                Si la jauge de santé atteint 0, le jeu est terminé.
-                                            </li>
+                                            <li>La jauge de santé du loup est affichée en haut de l'écran.</li>
+                                            <li>Le jeu commence avec la jauge de santé à 200 points.</li>
+                                            <li>Si la jauge de santé atteint 0, le jeu est terminé.</li>
                                         </ul>
-                                        <!-- <h3>Niveaux et Difficulté :</h3>
-                                    <ul>
-                                        <li>Le jeu est divisé en niveaux. Chaque niveau augmente la difficulté en augmentant la fréquence des aliments toxiques.</li>
-                                        <li>Au fur et à mesure que les niveaux progressent, la vitesse de déplacement du loup peut également augmenter.</li>
-                                    </ul> -->
+                                        
                                         <h3>Score :</h3>
                                         <ul>
-                                            <li>
-                                                Le score est basé sur la quantité de nourriture
-                                                saine empoisoné et de soin consommée.
-                                            </li>
-                                            <li>
-                                                Chaque nourriture consommée ajoute des points au
-                                                score total.
-                                            </li>
-                                            <li>
-                                                Un tableau de score est affiché à la fin du jeu.
-                                            </li>
+                                            <li>Le score est basé sur la quantité de nourriture saine, toxique et de soin consommée.</li>
+                                            <li>Chaque nourriture consommée ajoute des points au score total.</li>
+                                            <li>Un tableau de score est affiché à la fin du jeu.</li>
                                         </ul>
+                                        
                                         <h2>Instructions :</h2>
                                         <ul>
-                                            <li>
-                                                Déplacez le loup en utilisant les touches de
-                                                direction
-                                            </li>
-                                            <!--ou OKLM.-->
-                                            <li>
-                                                Cherchez et mangez de la nourriture saine pour
-                                                maintenir et augmenter la santé du loup.
-                                            </li>
-                                            <li>
-                                                Évitez les aliments toxiques ou, si ingérés,
-                                                déplacez-vous rapidement vers les herbes pour vous
-                                                purger.
-                                            </li>
-                                            <li>
-                                                Survivez aussi longtemps que possible en maintenant
-                                                la jauge de santé au-dessus de 0.
-                                            </li>
-                                            <!-- <li>
-                                            Progressez à travers les niveaux et atteignez le score
-                                            le plus élevé possible.
-                                        </li> -->
+                                            <li>Déplacez le loup en utilisant les touches de direction.</li>
+                                            <li>Cherchez et mangez de la nourriture saine pour maintenir et augmenter la santé du loup.</li>
+                                            <li>Évitez les aliments toxiques ou, si ingérés, déplacez-vous rapidement vers les herbes pour vous purger.</li>
+                                            <li>Survivez aussi longtemps que possible tout en évitant l'ours et en maintenant la jauge de santé au-dessus de 0.</li>
                                         </ul>
+                                        
                                         <h2>Fin de Partie :</h2>
                                         <ul>
-                                            <li>
-                                                La partie se termine lorsque la jauge de santé du
-                                                loup atteint 0.
-                                            </li>
-                                            <li>
-                                                Le score final est affiché, et vous pouvez choisir
-                                                de recommencer le jeu ou quitter.
-                                            </li>
+                                            <li>La partie se termine lorsque la jauge de santé du loup atteint 0.</li>
+                                            <li>Le score final est affiché, et vous pouvez choisir de recommencer le jeu ou de quitter.</li>
                                         </ul>
+                                        
                                         <h2>Conseils :</h2>
                                         <ul>
-                                            <li>
-                                                Soyez attentif aux aliments qui apparaissent.
-                                                Apprenez à reconnaître rapidement les toxiques.
-                                            </li>
-                                            <li>
-                                                Utilisez les herbes efficacement pour gérer les
-                                                effets toxiques.
-                                            </li>
-                                            <li>
-                                                Planifiez vos mouvements pour maximiser la collecte
-                                                de nourriture saine et minimiser les risques.
-                                            </li>
+                                            <li>Soyez attentif à l'ours qui se déplace rapidement et peut vous infliger des dégâts en cas de collision.</li>
+                                            <li>Utilisez les herbes efficacement pour gérer les effets toxiques.</li>
+                                            <li>Planifiez vos mouvements pour maximiser la collecte de nourriture saine tout en évitant les dangers.</li>
                                         </ul>
+                                        
                                         <p>Amusez-vous et bonne chasse !</p>
                                     </div>
                                 </div>
@@ -366,11 +288,11 @@
                 });
             </script>
             <script src="./assets/js/jquery-3.6.1.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="./assets/js/bootstrap.min.js"></script>
             <script src="./assets/js/script.js"></script>
+            <script src="./assets/js/theme-switch.js"></script>
         </body>
     </html>
 </DOCTYPE>

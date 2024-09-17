@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const wolfImg = "./assets/img/loup.webp";
     const deadWolfImg = "./assets/img/loup mort.png";
-    const bearImg = "./assets/img/ours.png";
-
     const foodImages = [
         "./assets/img/nourriture/viande.png",
         "./assets/img/nourriture/poisson.png",
@@ -33,44 +31,41 @@ document.addEventListener("DOMContentLoaded", function () {
         "./assets/img/poison/champitoxique.png",
         "./assets/img/poison/viandepourri.png",
     ];
-    const healingImages = [
-        "./assets/img/remede/plante.png",
-        "./assets/img/remede/fiole.png",
-    ];
+    const healingImages = ["./assets/img/remede/plante.png", "./assets/img/remede/fiole.png"];
 
-    // Fonction pour mettre à jour les barres de statut (santé, nourriture, poison)
     function updateStatusBars() {
         healthSpan.textContent = health;
         foodSpan.textContent = food;
         poisonSpan.textContent = poison;
 
-        // Si la santé tombe à 0, le jeu est fini
         if (health <= 0) {
             gameOver();
         }
     }
 
+    function increasePoison(amount) {
+        poison += amount;
+        if (poison > 100) poison = 100;
+        updateStatusBars();
+    }
+
+    function decreasePoison(amount) {
+        poison -= amount;
+        if (poison < 0) poison = 0;
+        updateStatusBars();
+    }
+
     updateStatusBars();
 
-    // Détermination de la taille pour PC et mobile
-    const isMobile = /Mobi|Android|iPad|Tablet/i.test(navigator.userAgent);
-    const wolfSize = isMobile ? 70 : 100;
-    const bearSize = isMobile ? 80 : 120;
-    const bearSpeed = isMobile ? 80 : 150; // Vitesse plus rapide pour l'ours sur mobile
-
-    // Initialisation du loup
     let gameScreenRect = gameScreen.getBoundingClientRect();
-    let wolfX = gameScreenRect.width / 2 - wolfSize / 2;
-    let wolfY = gameScreenRect.height / 2 - wolfSize / 2;
+    let wolfX = gameScreenRect.width / 2 - wolf.offsetWidth / 2;
+    let wolfY = gameScreenRect.height / 2 - wolf.offsetHeight / 2;
 
     wolf.src = wolfImg;
     wolf.style.position = "absolute";
-    wolf.style.width = `${wolfSize}px`;
-    wolf.style.height = `${wolfSize}px`;
     wolf.style.left = `${wolfX}px`;
     wolf.style.top = `${wolfY}px`;
 
-    // Déplacement du loup avec les touches fléchées
     document.addEventListener("keydown", function (event) {
         if (!isWolfDead) {
             const step = 30;
@@ -79,13 +74,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     wolfY = Math.max(wolfY - step, 0);
                     break;
                 case "ArrowDown":
-                    wolfY = Math.min(wolfY + step, gameScreenRect.height - wolfSize);
+                    wolfY = Math.min(wolfY + step, gameScreenRect.height - wolf.offsetHeight);
                     break;
                 case "ArrowLeft":
                     wolfX = Math.max(wolfX - step, 0);
                     break;
                 case "ArrowRight":
-                    wolfX = Math.min(wolfX + step, gameScreenRect.width - wolfSize);
+                    wolfX = Math.min(wolfX + step, gameScreenRect.width - wolf.offsetWidth);
                     break;
             }
             wolf.style.left = `${wolfX}px`;
@@ -94,16 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
             decreaseFood();
 
             if (food < 50) {
-                decreaseHealth(2); // Le loup perd de la santé si la nourriture est trop basse
+                decreaseHealth(2);
             }
 
             if (poison > 50) {
-                decreaseHealth(10); // Le loup perd plus de santé si le poison est trop élevé
+                decreaseHealth(10);
             }
         }
     });
 
-    // Réduit la nourriture et met à jour les barres de statut
     function decreaseFood() {
         if (!isWolfDead) {
             food -= 1;
@@ -115,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Réduit la santé et met à jour les barres de statut
     function decreaseHealth(amount) {
         if (!isWolfDead) {
             health -= amount;
@@ -127,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Fonction pour afficher le modal de fin de jeu
     function gameOver() {
         isWolfDead = true;
         const endTime = Date.now();
@@ -141,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
         deathModal.show();
     }
 
-    // Redémarre le jeu en réinitialisant les variables
     restartGameBtn.addEventListener("click", function () {
         isWolfDead = false;
         health = 200;
@@ -155,10 +146,9 @@ document.addEventListener("DOMContentLoaded", function () {
         wolf.src = wolfImg;
         updateStatusBars();
         deathModal.hide();
-        location.reload(); // Recharger la page pour réinitialiser le jeu
+        location.reload();
     });
 
-    // Fonction pour vérifier si deux éléments se touchent
     function isCollision(rect1, rect2) {
         return !(
             rect1.right < rect2.left ||
@@ -168,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // Vérifie les collisions entre le loup et la nourriture
     function checkFoodCollision() {
         const wolfRect = wolf.getBoundingClientRect();
         const foods = document.querySelectorAll(".food");
@@ -183,24 +172,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 health += 15;
                 if (health > 200) health = 200;
                 foodCount++;
-                console.log("Le loup a mangé de la nourriture.");
                 updateStatusBars();
             }
         });
     }
 
-    // Génère des éléments de nourriture, poison et soins
+    // Détection des appareils mobiles et tablettes
+    function isMobileOrTablet() {
+        return /Mobi|Android|iPad|Tablet/i.test(navigator.userAgent);
+    }
+
+    const maxFood = isMobileOrTablet() ? 5 : 10;
+    const maxPoison = isMobileOrTablet() ? 5 : 10;
+    const maxHealing = isMobileOrTablet() ? 2 : 5;
+    const imageSize = isMobileOrTablet() ? 50 : 70; // Taille de l'image en fonction de l'appareil
+
     function generateFood(maxFood) {
         const foodCount = document.querySelectorAll(".food").length;
         if (foodCount < maxFood) {
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
-            foodItem.style.width = `70px`;
-            foodItem.style.height = `70px`;
+            foodItem.style.width = `${imageSize}px`; // Utilisation de la taille définie
+            foodItem.style.height = `${imageSize}px`; // Utilisation de la taille définie
             foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)];
-            foodItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
-            foodItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
+            foodItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
+            foodItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(foodItem);
         }
     }
@@ -211,11 +208,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
-            poisonItem.style.width = `70px`;
-            poisonItem.style.height = `70px`;
+            poisonItem.style.width = `${imageSize}px`; // Utilisation de la taille définie
+            poisonItem.style.height = `${imageSize}px`; // Utilisation de la taille définie
             poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)];
-            poisonItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
-            poisonItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
+            poisonItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
+            poisonItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(poisonItem);
         }
     }
@@ -226,16 +223,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
-            healingItem.style.width = `70px`;
-            healingItem.style.height = `70px`;
+            healingItem.style.width = `${imageSize}px`; // Utilisation de la taille définie
+            healingItem.style.height = `${imageSize}px`; // Utilisation de la taille définie
             healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)];
-            healingItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
-            healingItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
+            healingItem.style.top = `${Math.random() * (gameScreenRect.height - 50)}px`;
+            healingItem.style.left = `${Math.random() * (gameScreenRect.width - 50)}px`;
             gameScreen.appendChild(healingItem);
         }
     }
 
-    // Fonction pour vérifier les collisions de poison et de soins
     function checkPoisonCollision() {
         const wolfRect = wolf.getBoundingClientRect();
         const poisons = document.querySelectorAll(".poison");
@@ -247,7 +243,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 poisonItem.remove();
                 increasePoison(25);
                 poisonCount++;
-                console.log("Le loup a mangé du poison.");
                 updateStatusBars();
             }
         });
@@ -264,108 +259,97 @@ document.addEventListener("DOMContentLoaded", function () {
                 healingItem.remove();
                 decreasePoison(20);
                 healingCount++;
-                console.log("Le loup a utilisé des soins.");
                 updateStatusBars();
             }
         });
     }
 
-    // Ajoute de la génération et des vérifications à intervalle régulier
-    setInterval(() => {
-        generateFood(8); // 10 nourritures max
-        generatePoison(10); // 10 poisons max
-        generateHealing(5); // 5 soins max
-        checkPoisonCollision();
-        checkHealingCollision();
-    }, 1000);
-
-    // Mécanique du poison
-    function increasePoison(amount) {
-        poison += amount;
-        if (poison > 100) poison = 100;
-        updateStatusBars();
-    }
-
-    function decreasePoison(amount) {
-        poison -= amount;
-        if (poison < 0) poison = 0;
-        updateStatusBars();
-    }
-
-    // Déplacement et interactions de l'ours
-    const bear = document.createElement("img");
-    bear.id = "bear";
-    bear.src = bearImg;
-    gameScreen.appendChild(bear);
-
-    let bearX = Math.random() * (gameScreen.offsetWidth - bearSize);
-    let bearY = Math.random() * (gameScreen.offsetHeight - bearSize);
-    const bearStep = bearSpeed; // Vitesse de déplacement de l'ours
-
-    bear.style.position = "absolute";
-    bear.style.width = `${bearSize}px`;
-    bear.style.height = `${bearSize}px`;
-    bear.style.left = `${bearX}px`;
-    bear.style.top = `${bearY}px`;
-
-    // Déplace l'ours dans une direction aléatoire
-    function moveBear() {
-        const directions = ["up", "down", "left", "right"];
-        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-
-        switch (randomDirection) {
-            case "up":
-                bearY = Math.max(bearY - bearStep, 0);
-                break;
-            case "down":
-                bearY = Math.min(bearY + bearStep, gameScreen.offsetHeight - bearSize);
-                break;
-            case "left":
-                bearX = Math.max(bearX - bearStep, 0);
-                break;
-            case "right":
-                bearX = Math.min(bearX + bearStep, gameScreen.offsetWidth - bearSize);
-                break;
-        }
-
-        bear.style.left = `${bearX}px`;
-        bear.style.top = `${bearY}px`;
-
-        checkBearCollisions(); // Vérifie les collisions de l'ours
-    }
-
-    // Vérifie les collisions entre l'ours et les éléments
-    function checkBearCollisions() {
-        const bearRect = bear.getBoundingClientRect();
-        const wolfRect = wolf.getBoundingClientRect();
-
-        // Collision entre l'ours et le loup
-        if (isCollision(bearRect, wolfRect)) {
-            decreaseHealth(20); // L'ours inflige des dégâts au loup
-            console.log("L'ours a touché le loup et lui a infligé des dégâts.");
-        }
-
-        // Collision entre l'ours et la nourriture
-        const foods = document.querySelectorAll(".food");
-        foods.forEach((foodItem) => {
-            const foodRect = foodItem.getBoundingClientRect();
-            if (isCollision(bearRect, foodRect)) {
-                foodItem.remove(); // L'ours mange la nourriture
-                console.log("L'ours a mangé de la nourriture.");
+    function gameLoop() {
+        if (!isWolfDead) {
+            generateFood(maxFood);
+            generatePoison(maxPoison);
+            generateHealing(maxHealing);
+            checkFoodCollision();
+            checkPoisonCollision();
+            checkHealingCollision();
+            decreaseFood();
+            if (food < 50) {
+                decreaseHealth(2);
             }
+            if (poison > 50) {
+                decreaseHealth(10);
+            }
+        }
+        setTimeout(gameLoop, 2000); // Intervalle de génération des éléments réduit
+    }
+
+    gameLoop();
+
+    // Détection des boutons mobiles et tablettes
+    const upArrow = document.getElementById("upArrow");
+    const downArrow = document.getElementById("downArrow");
+    const leftArrow = document.getElementById("leftArrow");
+    const rightArrow = document.getElementById("rightArrow");
+
+    if (isMobileOrTablet()) {
+        upArrow.addEventListener("click", function () {
+            wolfY = Math.max(wolfY - 30, 0);
+            wolf.style.top = `${wolfY}px`;
+            checkFoodCollision();
+            decreaseFood();
         });
 
-        // Collision entre l'ours et les soins
-        const healings = document.querySelectorAll(".healing");
-        healings.forEach((healingItem) => {
-            const healingRect = healingItem.getBoundingClientRect();
-            if (isCollision(bearRect, healingRect)) {
-                healingItem.remove(); // L'ours mange les soins
-                console.log("L'ours a mangé un soin.");
+        downArrow.addEventListener("click", function () {
+            wolfY = Math.min(wolfY + 30, gameScreenRect.height - wolf.offsetHeight);
+            wolf.style.top = `${wolfY}px`;
+            checkFoodCollision();
+            decreaseFood();
+        });
+
+        leftArrow.addEventListener("click", function () {
+            wolfX = Math.max(wolfX - 30, 0);
+            wolf.style.left = `${wolfX}px`;
+            checkFoodCollision();
+            decreaseFood();
+        });
+
+        rightArrow.addEventListener("click", function () {
+            wolfX = Math.min(wolfX + 30, gameScreenRect.width - wolf.offsetWidth);
+            wolf.style.left = `${wolfX}px`;
+            checkFoodCollision();
+            decreaseFood();
+        });
+    } else {
+        document.addEventListener("keydown", function (event) {
+            if (!isWolfDead) {
+                const step = 30;
+                switch (event.key) {
+                    case "ArrowUp":
+                        wolfY = Math.max(wolfY - step, 0);
+                        break;
+                    case "ArrowDown":
+                        wolfY = Math.min(wolfY + step, gameScreenRect.height - wolf.offsetHeight);
+                        break;
+                    case "ArrowLeft":
+                        wolfX = Math.max(wolfX - step, 0);
+                        break;
+                    case "ArrowRight":
+                        wolfX = Math.min(wolfX + step, gameScreenRect.width - wolf.offsetWidth);
+                        break;
+                }
+                wolf.style.left = `${wolfX}px`;
+                wolf.style.top = `${wolfY}px`;
+                checkFoodCollision();
+                decreaseFood();
+
+                if (food < 50) {
+                    decreaseHealth(2);
+                }
+
+                if (poison > 50) {
+                    decreaseHealth(10);
+                }
             }
         });
     }
-
-    // Déplace l'ours toutes les secondes
-    setInterval(moveBear, 1000);
 });
