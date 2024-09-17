@@ -33,10 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "./assets/img/poison/champitoxique.png",
         "./assets/img/poison/viandepourri.png",
     ];
-    const healingImages = [
-        "./assets/img/remede/plante.png",
-        "./assets/img/remede/fiole.png",
-    ];
+    const healingImages = ["./assets/img/remede/plante.png", "./assets/img/remede/fiole.png"];
 
     // Fonction pour mettre à jour les barres de statut (santé, nourriture, poison)
     function updateStatusBars() {
@@ -189,15 +186,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Génère des éléments de nourriture, poison et soins
+    // Fonction pour générer de la nourriture
     function generateFood(maxFood) {
         const foodCount = document.querySelectorAll(".food").length;
-        if (foodCount < maxFood) {
+        if (foodCount < (isMobile ? 5 : maxFood)) {
+            // Réduit le nombre sur mobile
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
-            foodItem.style.width = `70px`;
-            foodItem.style.height = `70px`;
+            foodItem.style.width = isMobile ? `40px` : `70px`;
+            foodItem.style.height = isMobile ? `40px` : `70px`;
             foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)];
             foodItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
             foodItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
@@ -205,14 +203,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Fonction pour générer du poison
     function generatePoison(maxPoison) {
         const poisonCount = document.querySelectorAll(".poison").length;
-        if (poisonCount < maxPoison) {
+        if (poisonCount < (isMobile ? 5 : maxPoison)) {
+            // Réduit le nombre sur mobile
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
-            poisonItem.style.width = `70px`;
-            poisonItem.style.height = `70px`;
+            poisonItem.style.width = isMobile ? `40px` : `70px`;
+            poisonItem.style.height = isMobile ? `40px` : `70px`;
             poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)];
             poisonItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
             poisonItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
@@ -220,14 +220,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Fonction pour générer des remèdes
     function generateHealing(maxHealing) {
         const healingCount = document.querySelectorAll(".healing").length;
-        if (healingCount < maxHealing) {
+        if (healingCount < (isMobile ? 3 : maxHealing)) {
+            // Réduit le nombre sur mobile
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
-            healingItem.style.width = `70px`;
-            healingItem.style.height = `70px`;
+            healingItem.style.width = isMobile ? `40px` : `70px`;
+            healingItem.style.height = isMobile ? `40px` : `70px`;
             healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)];
             healingItem.style.top = `${Math.random() * (gameScreenRect.height - wolfSize)}px`;
             healingItem.style.left = `${Math.random() * (gameScreenRect.width - wolfSize)}px`;
@@ -272,12 +274,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ajoute de la génération et des vérifications à intervalle régulier
     setInterval(() => {
-        generateFood(8); // 10 nourritures max
-        generatePoison(10); // 10 poisons max
-        generateHealing(5); // 5 soins max
+        generateFood(isMobile ? 5 : 8); // Réduit la quantité sur mobile
+        generatePoison(isMobile ? 5 : 10); // Réduit la quantité sur mobile
+        generateHealing(isMobile ? 3 : 5); // Réduit la quantité sur mobile
         checkPoisonCollision();
         checkHealingCollision();
     }, 1000);
+    
 
     // Mécanique du poison
     function increasePoison(amount) {
@@ -368,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Déplace l'ours toutes les secondes
     setInterval(moveBear, 1000);
-    
+
     // Détection des boutons mobiles
     const upArrow = document.getElementById("upArrow");
     const downArrow = document.getElementById("downArrow");
@@ -402,5 +405,4 @@ document.addEventListener("DOMContentLoaded", function () {
         checkFoodCollision();
         decreaseFood();
     });
-
 });
