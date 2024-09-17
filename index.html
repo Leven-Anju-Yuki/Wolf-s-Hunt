@@ -23,22 +23,29 @@
     <meta property="og:site_name" content="Wolf Hunt's" />
     
     <!-- Balises Meta Twitter Card pour les réseaux sociaux -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Wolf Hunt's - Jeu d'Aventure" />
     <meta name="twitter:description" content="Participez à une aventure palpitante avec Wolf Hunt's ! Guidez le loup à travers un monde rempli de défis, de nourriture, de poison et de soins." />
     <meta name="twitter:image" content="https://votre-site.com/assets/img/twitter-image.jpg" />
-    <meta name="twitter:site" content="@VotreTwitter" />
+    <meta name="twitter:site" content="@VotreTwitter" /> -->
     
     <!-- Favicon pour les navigateurs de bureau et mobiles -->
-    <link rel="icon" href="./assets/img/favicon.png" type="image/png">
-    
+    <link id="favicon-pc" rel="icon" type="image/png" href="./assets/img/favicon.png" />
+    <link
+        id="favicon-mobile"
+        rel="icon"
+        type="image/png"
+        href="./assets/img/favicon.png"
+        media="(max-width: 768px)"
+    />
+
     <!-- Fichier manifest pour les applications web progressives -->
     <link rel="manifest" href="./manifest.json" />
     
     <!-- Fichiers CSS pour le style du site -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-</head>  </head>
+</head> 
             <div>
                 <div class="row">
                     <div class="col-12">
@@ -77,9 +84,7 @@
                                     <div class="modal-body">
                                         <!-- Contenu des règles du jeu ici -->
                                         <center>
-                                            <button class="btn-install ml-2" id="installButton" style="display: none">
-                                                <h2>si vous vouler installer l'application</h2>
-                                            </button>
+                                       
                                         </center>
                                         <h2>Objectif :</h2>
                                         <p>
@@ -191,7 +196,9 @@
                 </div>
             </div>
             <!-- Zone de jeu -->
-            <div id="game-screen">
+            <div id="game-screen">     <button class="btn-install ml-2" id="installButton" style="display: none">
+                <h2>si vous vouler installer l'application</h2>
+            </button>
                 <!-- Image du loup pour le déplacement -->
                 <img id="wolf" src="./assets/img/loup.webp" alt="Loup" />
             </div>
