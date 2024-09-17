@@ -67,21 +67,30 @@ document.addEventListener("DOMContentLoaded", function () {
     wolf.style.left = `${wolfX}px`;
     wolf.style.top = `${wolfY}px`;
 
-    // Déplacement du loup avec les touches fléchées
+    // Déplacement du loup avec les touches fléchées ZQSD pour les droitiers et OKLM pour les gauchers
     document.addEventListener("keydown", function (event) {
         if (!isWolfDead) {
             const step = 30;
             switch (event.key) {
+                // Flèches directionnelles
                 case "ArrowUp":
+                case "z":
+                case "o":
                     wolfY = Math.max(wolfY - step, 0);
                     break;
                 case "ArrowDown":
+                case "s":
+                case "l":
                     wolfY = Math.min(wolfY + step, gameScreenRect.height - wolfSize);
                     break;
                 case "ArrowLeft":
+                case "q":
+                case "k":
                     wolfX = Math.max(wolfX - step, 0);
                     break;
                 case "ArrowRight":
+                case "d":
+                case "m":
                     wolfX = Math.min(wolfX + step, gameScreenRect.width - wolfSize);
                     break;
             }
@@ -280,7 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
         checkPoisonCollision();
         checkHealingCollision();
     }, 1000);
-    
 
     // Mécanique du poison
     function increasePoison(amount) {
