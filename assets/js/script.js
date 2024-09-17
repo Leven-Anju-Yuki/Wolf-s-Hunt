@@ -368,4 +368,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Déplace l'ours toutes les secondes
     setInterval(moveBear, 1000);
+    
+    // Détection des boutons mobiles
+    const upArrow = document.getElementById("upArrow");
+    const downArrow = document.getElementById("downArrow");
+    const leftArrow = document.getElementById("leftArrow");
+    const rightArrow = document.getElementById("rightArrow");
+
+    upArrow.addEventListener("click", function () {
+        wolfY = Math.max(wolfY - 30, 0);
+        wolf.style.top = `${wolfY}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    downArrow.addEventListener("click", function () {
+        wolfY = Math.min(wolfY + 30, gameScreenRect.height - wolf.offsetHeight);
+        wolf.style.top = `${wolfY}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    leftArrow.addEventListener("click", function () {
+        wolfX = Math.max(wolfX - 30, 0);
+        wolf.style.left = `${wolfX}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
+    rightArrow.addEventListener("click", function () {
+        wolfX = Math.min(wolfX + 30, gameScreenRect.width - wolf.offsetWidth);
+        wolf.style.left = `${wolfX}px`;
+        checkFoodCollision();
+        decreaseFood();
+    });
+
 });
