@@ -114,7 +114,7 @@ button a {
     position: fixed;
     right: 5px !important;
     /* width: 200px; */
-    /* z-index: 1000; */
+    z-index: 1000;
     border: 1px black solid;
     width: fit-content;
     background-color: rgba(250, 235, 215, 0.479);
@@ -135,6 +135,7 @@ button a {
     color: var(--button-text);
     margin: 10px 0;
     width: 100%;
+    opacity: 80%;
 }
 #wolf {
     position: absolute;
@@ -257,7 +258,7 @@ button a {
         top: 3vh;
         position: fixed;
         left: 5px;
-        width: 100px;
+        width: 60px;
         /* z-index: 1000; */
     }
     #mobile-controls {
