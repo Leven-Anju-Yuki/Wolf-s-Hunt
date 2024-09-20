@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const foodItem = document.createElement("img");
             foodItem.className = "food";
             foodItem.style.position = "absolute";
+            foodItem.style.margin = "5px";
             foodItem.style.width = isMobile ? `40px` : `70px`;
             foodItem.style.height = isMobile ? `40px` : `70px`;
             foodItem.src = foodImages[Math.floor(Math.random() * foodImages.length)];
@@ -219,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
             poisonItem.style.position = "absolute";
+            poisonItem.style.margin = "5px";
             poisonItem.style.width = isMobile ? `40px` : `70px`;
             poisonItem.style.height = isMobile ? `40px` : `70px`;
             poisonItem.src = poisonImages[Math.floor(Math.random() * poisonImages.length)];
@@ -236,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const healingItem = document.createElement("img");
             healingItem.className = "healing";
             healingItem.style.position = "absolute";
+            healingItem.style.margin = "5px";
             healingItem.style.width = isMobile ? `40px` : `70px`;
             healingItem.style.height = isMobile ? `40px` : `70px`;
             healingItem.src = healingImages[Math.floor(Math.random() * healingImages.length)];
