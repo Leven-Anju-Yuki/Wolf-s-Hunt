@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const restartGameBtn = document.getElementById("restartGameBtn");
 
     let health = 200;
-    let food = 400;
+    let food = 200;
     let poison = 0;
     let isWolfDead = false;
 
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Déplacement du loup avec les touches fléchées ZQSD pour les droitiers et OKLM pour les gauchers
     document.addEventListener("keydown", function (event) {
         if (!isWolfDead) {
-            const step = 30;
+            const step = 10;
             switch (event.key) {
                 // Flèches directionnelles
                 case "ArrowUp":
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     restartGameBtn.addEventListener("click", function () {
         isWolfDead = false;
         health = 200;
-        food = 400;
+        food = 200;
         poison = 0;
         foodCount = 0;
         poisonCount = 0;
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isCollision(wolfRect, foodRect)) {
                 foodItem.remove();
                 food += 40;
-                if (food > 400) food = 400;
+                if (food > 200) food = 200;
                 health += 15;
                 if (health > 200) health = 200;
                 foodCount++;
@@ -311,7 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let bearX = Math.random() * (gameScreen.offsetWidth - bearSize);
     let bearY = Math.random() * (gameScreen.offsetHeight - bearSize);
-    const bearStep = bearSpeed; // Vitesse de déplacement de l'ours
 
     bear.style.position = "absolute";
     bear.style.width = `${bearSize}px`;
@@ -319,7 +318,12 @@ document.addEventListener("DOMContentLoaded", function () {
     bear.style.left = `${bearX}px`;
     bear.style.top = `${bearY}px`;
 
-    // Déplace l'ours dans une direction aléatoire
+    // Déplacement de l'ours avec une étape plus petite et un intervalle plus fréquent
+    const bearStep = 10; // Réduction de la distance parcourue
+
+    // Déplace l'ours toutes les 500ms au lieu de 1000ms
+    setInterval(moveBear, 500);
+
     function moveBear() {
         const directions = ["up", "down", "left", "right"];
         const randomDirection = directions[Math.floor(Math.random() * directions.length)];
