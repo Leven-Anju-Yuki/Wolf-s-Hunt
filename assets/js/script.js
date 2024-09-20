@@ -318,10 +318,10 @@ document.addEventListener("DOMContentLoaded", function () {
     bear.style.top = `${bearY}px`;
 
     // Déplacement de l'ours avec une étape plus petite et un intervalle plus fréquent
-    const bearStep = 40; // Réduction de la distance parcourue
+    const bearStep = 70; // Réduction de la distance parcourue
 
     // Déplace l'ours toutes les 500ms au lieu de 1000ms
-    setInterval(moveBear, 200);
+    setInterval(moveBear, 150);
 
     function moveBear() {
         const directions = ["up", "down", "left", "right"];
