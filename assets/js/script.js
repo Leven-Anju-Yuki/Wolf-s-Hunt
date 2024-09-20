@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const isMobile = /Mobi|Android|iPad|Tablet/i.test(navigator.userAgent);
     const wolfSize = isMobile ? 70 : 100;
     const bearSize = isMobile ? 80 : 120;
-    const bearSpeed = isMobile ? 80 : 150; // Vitesse plus rapide pour l'ours sur mobile
 
     // Initialisation du loup
     let gameScreenRect = gameScreen.getBoundingClientRect();
@@ -99,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             checkFoodCollision();
             decreaseFood();
 
-            if (food < 50) {
+            if (food < 25) {
                 decreaseHealth(2); // Le loup perd de la santé si la nourriture est trop basse
             }
 
@@ -115,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
             food -= 1;
             if (food < 0) food = 0;
             updateStatusBars();
-            if (food < 50) {
+            if (food < 25) {
                 decreaseHealth(2);
             }
         }
@@ -319,10 +318,10 @@ document.addEventListener("DOMContentLoaded", function () {
     bear.style.top = `${bearY}px`;
 
     // Déplacement de l'ours avec une étape plus petite et un intervalle plus fréquent
-    const bearStep = 10; // Réduction de la distance parcourue
+    const bearStep = 40; // Réduction de la distance parcourue
 
     // Déplace l'ours toutes les 500ms au lieu de 1000ms
-    setInterval(moveBear, 500);
+    setInterval(moveBear, 200);
 
     function moveBear() {
         const directions = ["up", "down", "left", "right"];
