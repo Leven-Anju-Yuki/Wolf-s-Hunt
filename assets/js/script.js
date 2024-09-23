@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const restartGameBtn = document.getElementById("restartGameBtn");
 
     let health = 200;
-    let food = 200;
+    let food = 300;
     let poison = 0;
     let isWolfDead = false;
 
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     restartGameBtn.addEventListener("click", function () {
         isWolfDead = false;
         health = 200;
-        food = 200;
+        food = 300;
         poison = 0;
         foodCount = 0;
         poisonCount = 0;
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isCollision(wolfRect, foodRect)) {
                 foodItem.remove();
                 food += 40;
-                if (food > 200) food = 200;
+                if (food > 300) food = 300;
                 health += 15;
                 if (health > 200) health = 200;
                 foodCount++;
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Fonction pour générer du poison
     function generatePoison(maxPoison) {
         const poisonCount = document.querySelectorAll(".poison").length;
-        if (poisonCount < (isMobile ? 5 : maxPoison)) {
+        if (poisonCount < (isMobile ? 4 : maxPoison)) {
             // Réduit le nombre sur mobile
             const poisonItem = document.createElement("img");
             poisonItem.className = "poison";
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Ajoute de la génération et des vérifications à intervalle régulier
     setInterval(() => {
         generateFood(isMobile ? 5 : 8); // Réduit la quantité sur mobile
-        generatePoison(isMobile ? 5 : 10); // Réduit la quantité sur mobile
+        generatePoison(isMobile ? 4 : 10); // Réduit la quantité sur mobile
         generateHealing(isMobile ? 3 : 5); // Réduit la quantité sur mobile
         checkPoisonCollision();
         checkHealingCollision();
@@ -320,36 +320,45 @@ document.addEventListener("DOMContentLoaded", function () {
     bear.style.left = `${bearX}px`;
     bear.style.top = `${bearY}px`;
 
-    // Déplacement de l'ours avec une étape plus petite et un intervalle plus fréquent
-    const bearStep = 70; // Réduction de la distance parcourue
+    // Déplacement de l'ours
+let bearStep;
+let moveInterval;
 
-    // Déplace l'ours toutes les 500ms au lieu de 1000ms
-    setInterval(moveBear, 150);
+if (window.innerWidth <= 768) { // Vérifie si l'écran est un mobile
+    bearStep = 35; // Vitesse plus lente sur mobile
+    moveInterval = 600; // Intervalle plus court sur mobile
+} else {
+    bearStep = 70; // Vitesse normale sur desktop
+    moveInterval = 500; // Intervalle normal sur desktop
+}
 
-    function moveBear() {
-        const directions = ["up", "down", "left", "right"];
-        const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+// Déplace l'ours selon l'intervalle défini
+setInterval(moveBear, moveInterval);
 
-        switch (randomDirection) {
-            case "up":
-                bearY = Math.max(bearY - bearStep, 0);
-                break;
-            case "down":
-                bearY = Math.min(bearY + bearStep, gameScreen.offsetHeight - bearSize);
-                break;
-            case "left":
-                bearX = Math.max(bearX - bearStep, 0);
-                break;
-            case "right":
-                bearX = Math.min(bearX + bearStep, gameScreen.offsetWidth - bearSize);
-                break;
-        }
+function moveBear() {
+    const directions = ["up", "down", "left", "right"];
+    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
 
-        bear.style.left = `${bearX}px`;
-        bear.style.top = `${bearY}px`;
-
-        checkBearCollisions(); // Vérifie les collisions de l'ours
+    switch (randomDirection) {
+        case "up":
+            bearY = Math.max(bearY - bearStep, 0);
+            break;
+        case "down":
+            bearY = Math.min(bearY + bearStep, gameScreen.offsetHeight - bearSize);
+            break;
+        case "left":
+            bearX = Math.max(bearX - bearStep, 0);
+            break;
+        case "right":
+            bearX = Math.min(bearX + bearStep, gameScreen.offsetWidth - bearSize);
+            break;
     }
+
+    bear.style.left = `${bearX}px`;
+    bear.style.top = `${bearY}px`;
+
+    checkBearCollisions(); // Vérifie les collisions de l'ours
+}
 
     // Vérifie les collisions entre l'ours et les éléments
     function checkBearCollisions() {
@@ -358,7 +367,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Collision entre l'ours et le loup
         if (isCollision(bearRect, wolfRect)) {
-            decreaseHealth(20); // L'ours inflige des dégâts au loup
+            decreaseHealth(10); // L'ours inflige des dégâts au loup
             console.log("L'ours a touché le loup et lui a infligé des dégâts.");
         }
 
